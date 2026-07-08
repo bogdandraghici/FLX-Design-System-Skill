@@ -1,0 +1,140 @@
+{
+  "name": "Select Field",
+  "slug": "select-field",
+  "description": "Dropdown for choosing one or more options from a predefined list, with chip-based multi-select.",
+  "props": [
+    { "name": "state", "type": "enum", "options": ["default", "focused", "error", "disabled"], "default": "default" },
+    { "name": "filled", "type": "boolean", "default": false },
+    { "name": "fillMode", "type": "enum", "options": ["text", "chips"], "default": "text" },
+    { "name": "size", "type": "enum", "options": ["small", "medium"], "default": "medium" },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "hasLabel", "type": "boolean", "default": true },
+    { "name": "hasDescription", "type": "boolean", "default": false },
+    { "name": "hasPrefix", "type": "boolean", "default": false },
+    { "name": "hasSuffix", "type": "boolean", "default": false },
+    { "name": "hasIconStart", "type": "boolean", "default": false },
+    { "name": "placeholder", "type": "string", "default": "" }
+  ],
+  "states": ["default", "focused", "error", "disabled"],
+  "sizes": ["small", "medium"],
+  "anatomy": [
+    { "name": "Label", "description": "Text label above the select" },
+    { "name": "Info Icon", "description": "Optional info icon next to label" },
+    { "name": "Input Container", "description": "Wrapper with 8px radius" },
+    { "name": "Icon Start", "description": "Optional leading icon" },
+    { "name": "Prefix", "description": "Optional text prefix" },
+    { "name": "Placeholder / Chips", "description": "Placeholder text or selected chip group" },
+    { "name": "Suffix", "description": "Optional text suffix" },
+    { "name": "Error Icon", "description": "Shown in error state" },
+    { "name": "Caret Down", "description": "Dropdown arrow indicator" },
+    { "name": "Chip Group", "description": "Container for selected option chips" },
+    { "name": "Chip", "description": "Individual selected option tag" },
+    { "name": "Chip Count", "description": "Badge showing number of additional selections" },
+    { "name": "Description", "description": "Helper or error text below the select" }
+  ],
+  "dimensions": {
+    "medium": {
+      "containerHeight": 36,
+      "paddingTop": 6,
+      "paddingBottom": 6,
+      "paddingLeft": 12,
+      "paddingRight": 12,
+      "gap": 6,
+      "cornerRadius": 8,
+      "caretSize": 24,
+      "chipCornerRadius": 8,
+      "chipPaddingV": 2,
+      "chipPaddingH": 6
+    },
+    "small": {
+      "containerHeight": 28,
+      "caretSize": 16,
+      "chipCornerRadius": 6
+    }
+  },
+  "typography": {
+    "label": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 600 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 600 }
+    },
+    "value": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 400 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 400 }
+    },
+    "placeholder": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 400 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 400 }
+    },
+    "chip": {
+      "medium": { "fontSize": 14, "lineHeight": 24 },
+      "small": { "fontSize": 12, "lineHeight": 16 }
+    },
+    "description": {
+      "fontSize": 12,
+      "lineHeight": 16
+    }
+  },
+  "colors": {
+    "light": {
+      "default": {
+        "containerFill": "#ffffff",
+        "stroke": "#e3e8ed",
+        "value": "#1d232c",
+        "placeholder": "#64748b",
+        "chipBg": "#e3e8ed",
+        "chipText": "#000000",
+        "chipCount": "#006bd8",
+        "description": "#6b7789"
+      },
+      "hover": {
+        "stroke": "#cbd1db"
+      },
+      "focused": {
+        "stroke": "#006bd8"
+      },
+      "error": {
+        "stroke": "#e62200",
+        "description": "#e62200"
+      },
+      "disabled": {
+        "containerFill": "#e3e8ed",
+        "stroke": "#e3e8ed",
+        "value": "#5b6a7e",
+        "placeholder": "#8390a2",
+        "chipBg": "#cbd1db",
+        "chipText": "#475263"
+      }
+    },
+    "dark": {
+      "default": {
+        "containerFill": "transparent",
+        "stroke": "#64748b",
+        "value": "#ffffff",
+        "placeholder": "#a6b0be",
+        "chipBg": "#475263",
+        "chipText": "#ffffff",
+        "description": "#8390a2"
+      },
+      "hover": {
+        "stroke": "#8390a2"
+      },
+      "focused": {
+        "stroke": "#006bd8"
+      },
+      "error": {
+        "stroke": "#eb4e33",
+        "description": "#e62200"
+      },
+      "disabled": {
+        "containerFill": "#475263",
+        "stroke": "#5b6a7e",
+        "value": "#cbd1db",
+        "chipBg": "#5b6a7e",
+        "chipText": "#cbd1db"
+      }
+    }
+  },
+  "guidance": {
+    "fillMode": "Use text mode for single-select fields where the user picks exactly one option, rendering the selected value as plain text. Use chip mode for multi-select so users can see and remove individual selections."
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "name": "Input Field",
+  "slug": "input-field",
+  "description": "Single-line text input for collecting free-form data like names, emails, or numbers.",
+  "props": [
+    { "name": "state", "type": "enum", "options": ["default", "focused", "error", "disabled"], "default": "default" },
+    { "name": "filled", "type": "boolean", "default": false },
+    { "name": "size", "type": "enum", "options": ["small", "medium"], "default": "medium" },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "hasTopLabel", "type": "boolean", "default": true },
+    { "name": "hasSideLabel", "type": "boolean", "default": false },
+    { "name": "hasIconStart", "type": "boolean", "default": false },
+    { "name": "hasIconEnd", "type": "boolean", "default": false },
+    { "name": "hasPrefix", "type": "boolean", "default": false },
+    { "name": "hasSuffix", "type": "boolean", "default": false },
+    { "name": "hasDescription", "type": "boolean", "default": false },
+    { "name": "placeholder", "type": "string", "default": "" },
+    { "name": "value", "type": "string", "default": "" }
+  ],
+  "states": ["default", "hover", "focused", "error", "disabled"],
+  "sizes": ["small", "medium"],
+  "anatomy": [
+    { "name": "Label", "description": "Text label above or beside the input" },
+    { "name": "Info Icon", "description": "Optional info icon next to label" },
+    { "name": "Input Container", "description": "Wrapper with 8px radius" },
+    { "name": "Icon Start", "description": "Optional leading icon inside container" },
+    { "name": "Prefix", "description": "Optional text prefix" },
+    { "name": "Input Text / Placeholder", "description": "Text content or placeholder" },
+    { "name": "Suffix", "description": "Optional text suffix" },
+    { "name": "Icon End", "description": "Optional trailing icon inside container" },
+    { "name": "Description", "description": "Helper or error text below the input" }
+  ],
+  "dimensions": {
+    "medium": {
+      "containerHeight": 36,
+      "paddingH": 8,
+      "paddingV": 0,
+      "gap": 6,
+      "cornerRadius": 8
+    },
+    "small": {
+      "containerHeight": 28
+    }
+  },
+  "typography": {
+    "label": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 600 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 600 }
+    },
+    "value": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 400 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 400 }
+    },
+    "placeholder": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 400 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 400 }
+    },
+    "description": {
+      "fontSize": 12,
+      "lineHeight": 16,
+      "fontWeight": 400
+    }
+  },
+  "colors": {
+    "light": {
+      "default": {
+        "containerFill": "#ffffff",
+        "stroke": "#e3e8ed",
+        "value": "#1d232c",
+        "placeholder": "#64748b",
+        "description": "#6b7789"
+      },
+      "hover": {
+        "stroke": "#cbd1db"
+      },
+      "focused": {
+        "stroke": "#006bd8"
+      },
+      "error": {
+        "stroke": "#e62200",
+        "description": "#e62200"
+      },
+      "disabled": {
+        "containerFill": "#e3e8ed",
+        "stroke": "#e3e8ed",
+        "value": "#5b6a7e",
+        "placeholder": "#8390a2",
+        "label": "#8390a2",
+        "description": "#64748b"
+      }
+    },
+    "dark": {
+      "default": {
+        "containerFill": "transparent",
+        "stroke": "#64748b",
+        "value": "#ffffff",
+        "placeholder": "#a6b0be",
+        "description": "#8390a2"
+      },
+      "hover": {
+        "stroke": "#8390a2"
+      },
+      "focused": {
+        "stroke": "#006bd8"
+      },
+      "error": {
+        "stroke": "#eb4e33",
+        "description": "#e62200"
+      },
+      "disabled": {
+        "containerFill": "#475263",
+        "stroke": "#5b6a7e",
+        "value": "#cbd1db",
+        "label": "#64748b"
+      }
+    }
+  },
+  "guidance": {
+    "requiredFields": "Mark required fields with an asterisk after the label so users can scan a form and see what they must fill in before submitting. Use neutrals-500 for the asterisk so it reads as a quiet annotation rather than an alert."
+  }
+}

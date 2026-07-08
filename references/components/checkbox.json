@@ -1,0 +1,162 @@
+{
+  "name": "Checkbox",
+  "slug": "checkbox",
+  "description": "Lets users select one or more options from a list, or toggle a single setting on/off.",
+  "props": [
+    { "name": "selected", "type": "boolean", "default": false },
+    { "name": "indeterminate", "type": "boolean", "default": false },
+    { "name": "state", "type": "enum", "options": ["default", "error", "disabled"], "default": "default" },
+    { "name": "border", "type": "boolean", "default": true },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "size", "type": "enum", "options": ["small", "medium"], "default": "medium" },
+    { "name": "label", "type": "string", "default": "" },
+    { "name": "value", "type": "string", "default": "" },
+    { "name": "subtitle", "type": "string", "default": "" }
+  ],
+  "states": ["default", "error", "disabled"],
+  "indeterminate": "Set indeterminate on a parent checkbox when only some of its children are selected. It shares the filled look with selected (same fills, borders, and hover colors); only the icon differs, showing a white horizontal dash instead of a check. Clicking it selects all children; clicking again deselects them.",
+  "sizes": ["small", "medium"],
+  "anatomy": [
+    { "name": "Label", "description": "Text label above the checkbox" },
+    { "name": "Info Icon", "description": "Optional info icon next to label" },
+    { "name": "Input Container", "description": "Wrapper with 8px radius" },
+    { "name": "Checkbox Icon", "description": "Square with rounded corners" },
+    { "name": "Value", "description": "Text next to the checkbox icon" },
+    { "name": "Error Icon", "description": "Shown in error state" }
+  ],
+  "dimensions": {
+    "medium": {
+      "containerHeight": 36,
+      "paddingH": 8,
+      "paddingCenter": 6,
+      "checkboxIconSize": 24,
+      "checkboxCornerRadius": 4.8
+    },
+    "small": {
+      "containerHeight": 28,
+      "paddingH": 6,
+      "paddingCenter": 4,
+      "checkboxIconSize": 16,
+      "checkboxCornerRadius": 3.2
+    }
+  },
+  "typography": {
+    "label": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 600 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 600 }
+    },
+    "value": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 400 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 400 }
+    },
+    "valueWithSubtitle": {
+      "medium": { "fontSize": 14, "lineHeight": 24, "fontWeight": 600 },
+      "small": { "fontSize": 12, "lineHeight": 16, "fontWeight": 600 }
+    },
+    "subtitle": {
+      "fontSize": 12,
+      "lineHeight": 16,
+      "fontWeight": 400
+    }
+  },
+  "colors": {
+    "light": {
+      "default": {
+        "unselected": {
+          "containerBg": "#ffffff",
+          "border": "#e3e8ed",
+          "borderHover": "#cbd1db",
+          "checkboxStroke": "#cbd1db",
+          "checkboxStrokeHover": "#a6b0be",
+          "value": "#1d232c"
+        },
+        "selected": {
+          "containerBg": "#e6f0fb",
+          "border": "#006bd8",
+          "borderHover": "#005fc0",
+          "checkboxFill": "#006bd8",
+          "checkboxFillHover": "#005fc0",
+          "value": "#1d232c"
+        }
+      },
+      "error": {
+        "unselected": {
+          "containerBg": "#ffffff",
+          "border": "#e62200",
+          "borderHover": "#d11f00",
+          "value": "#1d232c"
+        },
+        "selected": {
+          "containerBg": "#fde9e6",
+          "border": "#e62200",
+          "borderHover": "#d11f00",
+          "checkboxFill": "#e62200",
+          "checkboxFillHover": "#d11f00"
+        }
+      },
+      "disabled": {
+        "unselected": {
+          "containerBg": "#e3e8ed",
+          "border": "rgba(15,17,20,0.1)",
+          "checkboxStroke": "rgba(15,17,20,0.1)",
+          "value": "#64748b"
+        },
+        "selected": {
+          "containerBg": "#e3e8ed",
+          "border": "#64748b",
+          "checkboxFill": "#64748b",
+          "value": "#64748b"
+        }
+      }
+    },
+    "dark": {
+      "default": {
+        "unselected": {
+          "containerBg": "transparent",
+          "border": "#64748b",
+          "borderHover": "#8390a2",
+          "checkboxStroke": "#64748b",
+          "checkboxStrokeHover": "#8390a2",
+          "value": "#ffffff"
+        },
+        "selected": {
+          "containerBg": "#002d5b",
+          "border": "#3389e0",
+          "borderHover": "#549ce5",
+          "checkboxFill": "#3389e0",
+          "checkboxFillHover": "#549ce5",
+          "value": "#ffffff"
+        }
+      },
+      "error": {
+        "unselected": {
+          "containerBg": "transparent",
+          "border": "#eb4e33",
+          "borderHover": "#ee6b54",
+          "errorIcon": "#eb4e33"
+        },
+        "selected": {
+          "containerBg": "#610e00",
+          "border": "#eb4e33",
+          "borderHover": "#ee6b54",
+          "checkboxFill": "#eb4e33",
+          "checkboxFillHover": "#ee6b54",
+          "errorIcon": "#eb4e33"
+        }
+      },
+      "disabled": {
+        "unselected": {
+          "containerBg": "#475263",
+          "border": "#5b6a7e",
+          "value": "#8390a2"
+        },
+        "selected": {
+          "containerBg": "#475263",
+          "border": "#8390a2",
+          "checkboxFill": "#a6b0be",
+          "value": "#8390a2"
+        }
+      }
+    }
+  }
+}

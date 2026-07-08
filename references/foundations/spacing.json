@@ -1,0 +1,27 @@
+{
+  "name": "Spacing",
+  "description": "FlowX spacing scale for margins, padding, and gaps.",
+  "tokens": {
+    "0": { "px": 0, "rem": 0 },
+    "1": { "px": 1, "rem": 0.0625 },
+    "2": { "px": 2, "rem": 0.125 },
+    "4": { "px": 4, "rem": 0.25 },
+    "6": { "px": 6, "rem": 0.375 },
+    "8": { "px": 8, "rem": 0.5 },
+    "12": { "px": 12, "rem": 0.75 },
+    "16": { "px": 16, "rem": 1 },
+    "24": { "px": 24, "rem": 1.5 },
+    "32": { "px": 32, "rem": 2 },
+    "40": { "px": 40, "rem": 2.5 },
+    "48": { "px": 48, "rem": 3 },
+    "56": { "px": 56, "rem": 3.5 },
+    "64": { "px": 64, "rem": 4 },
+    "80": { "px": 80, "rem": 5 },
+    "96": { "px": 96, "rem": 6 },
+    "112": { "px": 112, "rem": 7 },
+    "128": { "px": 128, "rem": 8 },
+    "144": { "px": 144, "rem": 9 },
+    "160": { "px": 160, "rem": 10 },
+    "cssVariablePattern": "--flowx-space-{value}"
+  }
+}

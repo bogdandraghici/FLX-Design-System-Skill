@@ -1,0 +1,125 @@
+{
+  "name": "Modals",
+  "slug": "modals",
+  "type": "pattern",
+  "description": "Overlay dialog for short tasks, confirmations, or focused content.",
+  "props": [
+    { "name": "size", "type": "enum", "options": ["XS", "S", "M", "L"], "default": "M" },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "showSubtitle", "type": "boolean", "default": true },
+    { "name": "step", "type": "enum", "options": ["single", "multi"], "default": "single" },
+    { "name": "title", "type": "string" },
+    { "name": "subtitle", "type": "string" }
+  ],
+  "sizes": {
+    "XS": { "width": 400, "padding": 24, "gap": 24, "useCase": "Short confirmations with one or two lines of copy. Also usable as a small in-context pop-over without an overlay." },
+    "S": { "width": 600, "padding": 32, "gap": 32, "useCase": "Brief multi-step dialogs, onboarding prompts, confirmation flows." },
+    "M": { "width": 800, "padding": 32, "gap": 32, "useCase": "Default size for most form-based flows." },
+    "L": { "width": 1426, "widthLabel": "80% Screen Width", "padding": 32, "gap": 32, "useCase": "Data-heavy dialogs with tables, grids, previews, or complex actions like merge conflicts." }
+  },
+  "container": {
+    "layout": { "direction": "vertical", "sizingH": "fixed", "sizingV": "hug" },
+    "cornerRadius": 16,
+    "boxShadow": "2px 2px 24px 0 rgba(22, 52, 98, 0.12)",
+    "background": { "light": "#ffffff", "dark": "#1d232c" }
+  },
+  "anatomy": [
+    { "name": "Container", "description": "Rounded surface holding all content; carries the drop shadow that separates it from the scrim. Padding and gap are 32px (24px at XS)." },
+    { "name": "Header", "description": "Centered vertical title + subtitle stack, 4px gap, fills width." },
+    { "name": "Title", "description": "Primary heading, Open Sans Bold 24px / 38px line-height." },
+    { "name": "Subtitle", "description": "Optional descriptive text below the title, Open Sans Regular 12px / 16px. Toggled via showSubtitle (default visible)." },
+    { "name": "CloseIcon", "description": "24x24 X icon absolutely positioned in the top-right corner (inset by container padding). Always rendered; exits the entire flow in multi-step modals." },
+    { "name": "BackIcon", "description": "24x24 CaretLeft icon absolutely positioned in the top-left corner. Visible only in multi-step modals." },
+    { "name": "Content", "description": "Slot where the calling context injects its body (forms, text, lists, tables, media). Placeholder spec: horizontal, fill width, 10px padding, 10px gap, centered, cornerRadius 16, height 196." },
+    { "name": "Actions", "description": "Horizontal button row at the bottom: fill width, hug height, 16px gap, right-aligned (primaryAlign MAX), vertically centered." },
+    { "name": "SecondaryButton", "description": "Cancel / secondary action, cornerRadius 8, Open Sans SemiBold 14px / 24px. Becomes 'Back' in multi-step modals." },
+    { "name": "PrimaryButton", "description": "Primary / confirm action, right-most, cornerRadius 8, Open Sans SemiBold 14px / 24px." }
+  ],
+  "typography": {
+    "title": { "fontFamily": "Open Sans", "fontSize": 24, "lineHeight": 38, "fontWeight": 700 },
+    "subtitle": { "fontFamily": "Open Sans", "fontSize": 12, "lineHeight": 16, "fontWeight": 400 },
+    "buttons": { "fontFamily": "Open Sans", "fontSize": 14, "lineHeight": 24, "fontWeight": 600 }
+  },
+  "buttonPlacement": {
+    "twoButtons": "Secondary + primary together fill the right 50% of the footer (25% each).",
+    "oneButton": "Primary sits at the right taking 25% of the footer width, or hugs its content.",
+    "threeButtons": "Tertiary (text) button on the left, secondary + primary on the right, 25% width each.",
+    "leftHalf": "The left half of the footer is reserved for optional info text (e.g. 'Models enabled: 3/12').",
+    "xsException": "In XS modals buttons stretch to fill 100% of the row: 1 button → 100%, 2 → 50% each, 3 → 33% each.",
+    "gap": 16,
+    "order": "Primary action right-most, secondary (cancel) to its left. Never put destructive actions on the right."
+  },
+  "multiStep": {
+    "behavior": "When a modal contains multiple steps, replace Cancel with Back and add a CaretLeft back icon in the top-left corner. The X close icon stays in the top-right and exits the entire flow. Never stack a modal on another modal; replace the current modal's content instead.",
+    "primaryLabel": "Next"
+  },
+  "colors": {
+    "light": {
+      "container": { "fill": "#ffffff" },
+      "title": { "text": "#2a313a" },
+      "subtitle": { "text": "#64748b" },
+      "closeIcon": { "fill": "#64748b" },
+      "backIcon": { "fill": "#64748b" },
+      "contentPlaceholder": { "fill": "#f0ecfa", "labelText": "#7a4ed1" },
+      "secondaryButton": { "fill": "#ffffff", "stroke": "#e3e8ed", "strokeWidth": 1, "text": "#006bd8" },
+      "primaryButton": { "fill": "#006bd8", "text": "#ffffff" }
+    },
+    "dark": {
+      "container": { "fill": "#1d232c" },
+      "title": { "text": "#ffffff" },
+      "subtitle": { "text": "#8390a2" },
+      "closeIcon": { "fill": "#64748b" },
+      "backIcon": { "fill": "#64748b" },
+      "contentPlaceholder": { "fill": "#7a4ed1", "opacity": 0.2, "labelText": "#f0ecfa" },
+      "secondaryButton": { "fill": "transparent", "stroke": "#5b6a7e", "strokeWidth": 1, "text": "#3389e0" },
+      "primaryButton": { "fill": "#3389e0", "text": "#ffffff" }
+    }
+  },
+  "tokens": {
+    "container.fill": "grays/50 (#ffffff)",
+    "container.fill.inverted": "neutrals/900 (#1d232c)",
+    "container.padding.XS": "scale/24 (24)",
+    "container.padding.S-M-L": "scale/32 (32)",
+    "container.gap.XS": "scale/24 (24)",
+    "container.gap.S-M-L": "scale/32 (32)",
+    "container.cornerRadius": "radius/16 (16)",
+    "header.gap": "scale/4 (4)",
+    "title.fill": "neutrals/800 (#2a313a)",
+    "title.fill.inverted": "grays/50 (#ffffff)",
+    "title.fontSize": "fontsize/xl (24)",
+    "title.lineHeight": "lineheight/38 (38)",
+    "subtitle.fill.inverted": "neutrals/400 (#8390a2)",
+    "subtitle.fontSize": "fontsize/s (12)",
+    "subtitle.lineHeight": "lineheight/16 (16)",
+    "subtitle.fontWeight": "weight/regular (400)"
+  },
+  "guidelines": {
+    "do": [
+      "Use a modal only for tasks that need full attention or must be completed before returning to the page.",
+      "Keep titles short and action-oriented: state what the user is about to do.",
+      "Primary action on the right, secondary (cancel) to its left, consistently across the product.",
+      "Choose the smallest size that fits the content comfortably; most modals should be Medium or smaller.",
+      "Always provide at least one explicit dismissal (X icon, Cancel button, or Escape)."
+    ],
+    "dont": [
+      "Don't use a modal for content that could live inline.",
+      "Don't stack a modal on top of another modal; replace the current modal's content for a second step.",
+      "Don't put destructive actions on the right; the right-most slot is for the safe, primary action.",
+      "Don't scroll inside Large modals when Medium plus an inline page would work; Large is for genuinely wide content like tables."
+    ],
+    "sizing": "XS for small in-context pop-overs that don't need an overlay. S or M depending on content size. L for complex actions such as solving merge conflicts.",
+    "considerations": [
+      "Body contains a form → prefer Medium or Large so inputs aren't cramped and error text fits below fields.",
+      "Destructive action → use role='alertdialog' and phrase the primary button as the destructive verb ('Delete', not 'OK').",
+      "Vertical overflow → let the body scroll internally rather than making the modal taller than the viewport.",
+      "On open, move focus to the first interactive element; restore focus to the trigger on close."
+    ]
+  },
+  "accessibility": {
+    "role": "dialog ('alertdialog' for destructive confirmations)",
+    "aria": ["aria-modal=true", "aria-labelledby → title", "aria-describedby → subtitle/body when it adds context"],
+    "keyboard": ["Escape dismisses", "Tab/Shift+Tab cycle focus, trapped inside the modal", "Enter triggers the primary action from non-button controls"]
+  },
+  "relatedComponents": ["button", "input-field", "select-field"],
+  "notes": "Pattern, not a base component (not in the component registry). Overlay/scrim color and opacity are not specified in the sources. Button height/padding are not specified in the Figma spec (the docs preview uses 6px 12px padding, illustrative only). L width is 1426px in the Figma spec; the docs page labels it '80% Screen Width'."
+}

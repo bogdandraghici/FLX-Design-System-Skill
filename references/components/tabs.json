@@ -1,0 +1,54 @@
+{
+  "name": "Tabs",
+  "slug": "tabs",
+  "description": "Organizes related content into panels the user can switch between without leaving the page.",
+  "props": [
+    { "name": "size", "type": "enum", "options": ["small", "medium"], "default": "medium" },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "tabs", "type": "string[]", "default": ["Tab Name", "Tab Name", "Tab Name", "Tab Name", "Tab Name"] },
+    { "name": "activeIndex", "type": "number", "default": 1 },
+    { "name": "hasIcon", "type": "boolean", "default": false },
+    { "name": "hasCounter", "type": "boolean", "default": false }
+  ],
+  "states": ["active", "inactive"],
+  "sizes": ["small", "medium"],
+  "anatomy": [
+    { "name": "TabsContainer", "description": "Horizontal row of tab cells with full-width bottom divider" },
+    { "name": "TabCell", "description": "Individual tab with no top padding, 12px left/right padding, 8px (medium) or 6px (small) bottom padding, 6px gap" },
+    { "name": "TabIcon", "description": "Optional left icon, 16x16" },
+    { "name": "TabName", "description": "Tab label text" },
+    { "name": "Counter", "description": "Optional counter badge pill, cornerRadius 99" }
+  ],
+  "dimensions": {
+    "medium": { "tabNameFontSize": 14, "tabNameLineHeight": 24 },
+    "small": { "tabNameFontSize": 12, "tabNameLineHeight": 16 },
+    "tabCell": {
+      "medium": { "paddingTop": 0, "paddingBottom": 8, "paddingLeft": 12, "paddingRight": 12, "gap": 6 },
+      "small": { "paddingTop": 0, "paddingBottom": 6, "paddingLeft": 12, "paddingRight": 12, "gap": 6 }
+    },
+    "tabIcon": { "width": 16, "height": 16 },
+    "counter": { "cornerRadius": 99 }
+  },
+  "typography": {
+    "tabName": { "fontFamily": "Open Sans" },
+    "activeWeight": 600,
+    "inactiveWeightMedium": 600,
+    "inactiveWeightSmall": 400
+  },
+  "colors": {
+    "light": {
+      "containerDivider": { "color": "#e3e8ed", "width": 1 },
+      "activeTab": { "bottomStroke": "#006bd8", "bottomStrokeWidth": 2, "text": "#006bd8" },
+      "inactiveTab": { "text": "#64748b" },
+      "activeCounter": { "fill": "#006bd8", "text": "#ffffff" },
+      "inactiveCounter": { "fill": "#e3e8ed", "text": "#64748b" }
+    },
+    "dark": {
+      "containerDivider": { "color": "#475263", "width": 1 },
+      "activeTab": { "bottomStroke": "#006bd8", "bottomStrokeWidth": 2, "text": "#006bd8" },
+      "inactiveTab": { "text": "#64748b" },
+      "activeCounter": { "fill": "#006bd8", "text": "#ffffff" },
+      "inactiveCounter": { "fill": "#e3e8ed", "text": "#64748b" }
+    }
+  }
+}

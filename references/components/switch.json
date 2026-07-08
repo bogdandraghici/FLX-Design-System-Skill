@@ -1,0 +1,59 @@
+{
+  "name": "Switch",
+  "slug": "switch",
+  "description": "Binary toggle for settings that take effect immediately, like enabling a feature or turning on notifications.",
+  "props": [
+    { "name": "on", "type": "boolean", "default": false },
+    { "name": "state", "type": "enum", "options": ["default", "disabled"], "default": "default" },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "size", "type": "enum", "options": ["small", "medium"], "default": "medium" },
+    { "name": "label", "type": "string" }
+  ],
+  "states": ["default", "disabled"],
+  "sizes": ["small", "medium"],
+  "anatomy": [
+    { "name": "Root", "description": "Horizontal layout wrapper, 8px gap, center-aligned" },
+    { "name": "Left Label", "description": "Always hidden label to the left of the track" },
+    { "name": "Track", "description": "Pill-shaped container holding the knob" },
+    { "name": "Knob", "description": "Circular toggle handle inside the track" },
+    { "name": "Right Label", "description": "Text label to the right of the track" }
+  ],
+  "dimensions": {
+    "medium": {
+      "track": { "width": 42, "height": 24, "cornerRadius": 20 },
+      "knob": { "width": 16, "height": 16 }
+    },
+    "small": {
+      "track": { "width": 28, "height": 16, "cornerRadius": 20 },
+      "knobOn": { "width": 12, "height": 12 },
+      "knobOff": { "width": 10, "height": 10 }
+    }
+  },
+  "typography": {
+    "label": { "fontFamily": "Open Sans", "fontWeight": 400 },
+    "medium": { "fontSize": 14, "lineHeight": 22 },
+    "small": { "fontSize": 12, "lineHeight": 16 }
+  },
+  "colors": {
+    "light": {
+      "on": {
+        "default": { "trackFill": "#006bd8", "knob": "#ffffff", "label": "#0f1114" },
+        "disabled": { "trackFill": "#8390a2", "knob": "#ffffff" }
+      },
+      "off": {
+        "default": { "trackFill": "#ffffff", "trackStroke": "#cbd1db", "trackStrokeWidth": 1.5, "knob": "#64748b" },
+        "disabled": { "trackFill": "#ffffff", "trackStroke": "#cbd1db", "trackStrokeWidth": 1.5, "knob": "#cbd1db" }
+      }
+    },
+    "dark": {
+      "on": {
+        "default": { "trackFill": "#3389e0", "knob": "#ffffff", "label": "#ffffff" },
+        "disabled": { "trackFill": "#5b6a7e", "knob": "#ffffff" }
+      },
+      "off": {
+        "default": { "trackFill": "#5b6a7e", "trackStroke": "#8390a2", "trackStrokeWidth": 1.5, "knob": "#ffffff" },
+        "disabled": { "trackFill": "#5b6a7e", "trackStroke": "#8390a2", "trackStrokeWidth": 1.5, "knob": "#a6b0be" }
+      }
+    }
+  }
+}

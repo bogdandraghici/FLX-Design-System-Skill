@@ -1,0 +1,114 @@
+{
+  "name": "Colors",
+  "description": "FlowX color palettes with 10-step scales, semantic tokens, and dark mode overrides.",
+  "tokens": {
+    "palettes": {
+      "blue": {
+        "50": "#e6f0fb",
+        "100": "#b0d1f3",
+        "200": "#8abbed",
+        "300": "#549ce5",
+        "400": "#3389e0",
+        "500": "#006bd8",
+        "600": "#005fc0",
+        "700": "#004c99",
+        "800": "#003b77",
+        "900": "#002d5b"
+      },
+      "yellow": {
+        "50": "#fff8e7",
+        "100": "#ffe9b6",
+        "200": "#ffdf92",
+        "300": "#fed061",
+        "400": "#fec742",
+        "500": "#feb913",
+        "600": "#e7a811",
+        "700": "#b4830d",
+        "800": "#8c660a",
+        "900": "#6b4e08"
+      },
+      "green": {
+        "50": "#e6f2ef",
+        "100": "#b0d8ce",
+        "200": "#8ac5b6",
+        "300": "#54aa94",
+        "400": "#339980",
+        "500": "#008060",
+        "600": "#007457",
+        "700": "#005b44",
+        "800": "#004635",
+        "900": "#003628"
+      },
+      "orange": {
+        "50": "#fff0e8",
+        "100": "#fed1b9",
+        "200": "#febb97",
+        "300": "#fe9c67",
+        "400": "#fd8949",
+        "500": "#fd6b1c",
+        "600": "#e66119",
+        "700": "#b44c14",
+        "800": "#8b3b0f",
+        "900": "#6a2d0c"
+      },
+      "red": {
+        "50": "#fde9e6",
+        "100": "#f7bab0",
+        "200": "#f4998a",
+        "300": "#ee6b54",
+        "400": "#eb4e33",
+        "500": "#e62200",
+        "600": "#d11f00",
+        "700": "#a31800",
+        "800": "#7f1300",
+        "900": "#610e00"
+      },
+      "neutrals": {
+        "50": "#f7f8f9",
+        "100": "#e3e8ed",
+        "200": "#cbd1db",
+        "300": "#a6b0be",
+        "400": "#8390a2",
+        "500": "#64748b",
+        "600": "#5b6a7e",
+        "700": "#475263",
+        "800": "#2a313a",
+        "900": "#1d232c"
+      },
+      "grays": {
+        "50": "#ffffff",
+        "900": "#000000"
+      }
+    },
+    "semantic": {
+      "light": {
+        "surface-primary": { "alias": "grays-50", "value": "#ffffff" },
+        "surface-secondary": { "alias": "neutrals-50", "value": "#f7f8f9" },
+        "surface-tertiary": { "alias": "neutrals-100", "value": "#e3e8ed" },
+        "text-primary": { "alias": "neutrals-900", "value": "#1d232c" },
+        "text-secondary": { "alias": "neutrals-500", "value": "#64748b" },
+        "text-disabled": { "alias": "neutrals-300", "value": "#a6b0be" },
+        "border-default": { "alias": "neutrals-200", "value": "#cbd1db" },
+        "border-strong": { "alias": "neutrals-400", "value": "#8390a2" },
+        "interactive-default": { "alias": "blue-500", "value": "#006bd8" },
+        "interactive-hover": { "alias": "blue-600", "value": "#005fc0" },
+        "success": { "alias": "green-500", "value": "#008060" },
+        "warning": { "alias": "yellow-500", "value": "#feb913" },
+        "error": { "alias": "red-500", "value": "#e62200" },
+        "info": { "alias": "blue-500", "value": "#006bd8" }
+      },
+      "dark": {
+        "background": { "alias": "neutrals-900", "value": "#1d232c" },
+        "foreground": { "alias": "neutrals-50", "value": "#f7f8f9" },
+        "primary": { "alias": "blue-400", "value": "#3389e0" },
+        "destructive": { "alias": "red-400", "value": "#eb4e33" },
+        "card": { "alias": "neutrals-800", "value": "#2a313a" },
+        "muted": { "alias": "neutrals-700", "value": "#475263" },
+        "muted-foreground": { "alias": "neutrals-400", "value": "#8390a2" },
+        "border": { "alias": "neutrals-700", "value": "#475263" },
+        "ring": { "alias": "blue-400", "value": "#3389e0" }
+      }
+    },
+    "cssVariablePattern": "--flowx-{palette}-{shade}"
+  }
+}

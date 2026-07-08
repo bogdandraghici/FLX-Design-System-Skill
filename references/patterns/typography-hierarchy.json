@@ -1,0 +1,106 @@
+{
+  "name": "Typographic Hierarchy",
+  "slug": "typography-hierarchy",
+  "description": "Reference for the typography classes used across the FlowX designer, with rules for composing page, section, and subsection titles with descriptions.",
+  "roles": [
+    {
+      "name": "Page Title",
+      "className": "xxl bold",
+      "textStylePreset": "xxl-bold",
+      "fontSize": 24,
+      "lineHeight": 38,
+      "fontWeight": 700,
+      "color": "var(--flowx-neutrals-900)",
+      "colorName": "neutral-900",
+      "usage": "The single page-level heading in the top title card. One per page."
+    },
+    {
+      "name": "Section Title",
+      "className": "p3 bold",
+      "textStylePreset": "l-bold",
+      "fontSize": 18,
+      "lineHeight": 28,
+      "fontWeight": 700,
+      "color": "var(--flowx-neutrals-900)",
+      "colorName": "neutral-900",
+      "usage": "Title of a major section inside the body card (Filters, Entries, General Settings, and similar)."
+    },
+    {
+      "name": "Subsection Title",
+      "className": "p1 bold",
+      "textStylePreset": "m-bold",
+      "fontSize": 14,
+      "lineHeight": 24,
+      "fontWeight": 700,
+      "color": "var(--flowx-neutrals-900)",
+      "colorName": "neutral-900",
+      "usage": "Title of a labelled subsection or grouping inside a section."
+    },
+    {
+      "name": "Description",
+      "className": "caption regular",
+      "textStylePreset": "s-regular",
+      "fontSize": 12,
+      "lineHeight": 16,
+      "fontWeight": 400,
+      "color": "var(--flowx-neutrals-500)",
+      "colorName": "neutral-500",
+      "usage": "Short supporting copy paired with any title (page, section, or subsection). Same style at every level; the surrounding title sets the hierarchy."
+    }
+  ],
+  "supportingStyles": [
+    {
+      "name": "Field Label",
+      "note": "Used in the composition examples for form field labels; not one of the four documented hierarchy roles.",
+      "fontSize": 14,
+      "lineHeight": 20,
+      "fontWeight": 600,
+      "color": "var(--flowx-neutrals-900)"
+    }
+  ],
+  "rules": [
+    "Every page uses exactly one Page Title.",
+    "Sections sit below the Page Title.",
+    "Subsections group fields inside a section.",
+    "Pair any title with a Description only when extra context is needed.",
+    "The Description style is identical at every level; the title above it is what establishes the hierarchy level."
+  ],
+  "composition": {
+    "cardShell": {
+      "border": "1px solid var(--flowx-neutrals-100)",
+      "borderRadius": 12,
+      "backgroundColor": "#ffffff",
+      "outerBackground": "var(--flowx-neutrals-50)",
+      "padding": 24,
+      "note": "This shell is how the hierarchy page illustrates its examples and predates the Cards pattern. When building real screens, card containers follow patterns/cards.json (16px radius, Primary shadow / Secondary border) \u2014 use this pattern only for the text roles and spacing rules."
+    },
+    "spacing": {
+      "titleToDescription": 6,
+      "titleBlockToContent": 16,
+      "betweenCards": 16,
+      "betweenSectionsInSharedCard": 24,
+      "fieldLabelToControl": 6,
+      "betweenButtons": 8
+    },
+    "structure": {
+      "pageHeaderCard": "Bordered card containing the Page Title with its Description, 24px padding, 6px gap between title and description.",
+      "sectionCard": "Bordered card with a Section Title + Description block (6px gap) followed by content, 24px padding, 16px gap between title block and content.",
+      "subsectionCard": "Same card shell as a section card but titled with Subsection Title; nests inside a section card.",
+      "buttonRow": "Right-aligned Cancel (secondary) and Save (primary, var(--flowx-blue-500)) buttons, 8px gap, placed at the bottom of the card that owns the form."
+    },
+    "scenarios": [
+      {
+        "name": "Scenario A",
+        "rule": "One section with a subsection inside: page header card, then a section card that nests a subsection card holding the form fields and the button row."
+      },
+      {
+        "name": "Scenario B",
+        "rule": "Sibling section cards directly under the page title: each section gets its own bordered card; the button row lives in the last section card."
+      },
+      {
+        "name": "Scenario C",
+        "rule": "Sibling sections sharing the same card: one bordered card contains multiple Section Title blocks stacked with 24px gaps, with a single button row at the bottom of the shared card."
+      }
+    ]
+  }
+}

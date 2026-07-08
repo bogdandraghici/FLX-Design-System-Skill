@@ -1,0 +1,51 @@
+{
+  "name": "Typography",
+  "description": "FlowX typographic scale, font families, weights, and text style presets.",
+  "tokens": {
+    "fontFamilies": {
+      "primary": "Open Sans",
+      "monospace": "JetBrains Mono"
+    },
+    "fontSizes": {
+      "xs": "10px",
+      "s": "12px",
+      "m": "14px",
+      "l": "18px",
+      "xl": "24px",
+      "xxl": "40px",
+      "xxxl": "72px"
+    },
+    "lineHeights": {
+      "12": "12px",
+      "16": "16px",
+      "18": "18px",
+      "22": "22px",
+      "24": "24px",
+      "28": "28px",
+      "38": "38px",
+      "60": "60px",
+      "108": "108px"
+    },
+    "fontWeights": {
+      "regular": 400,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 900
+    },
+    "textStyles": {
+      "xs-regular": { "fontSize": "10px", "lineHeight": "12px", "fontWeight": 400 },
+      "xs-semibold": { "fontSize": "10px", "lineHeight": "12px", "fontWeight": 600 },
+      "xs-bold": { "fontSize": "10px", "lineHeight": "12px", "fontWeight": 700 },
+      "s-regular": { "fontSize": "12px", "lineHeight": "16px", "fontWeight": 400 },
+      "s-semibold": { "fontSize": "12px", "lineHeight": "16px", "fontWeight": 600 },
+      "s-bold": { "fontSize": "12px", "lineHeight": "16px", "fontWeight": 700 },
+      "m-regular": { "fontSize": "14px", "lineHeight": "24px", "fontWeight": 400 },
+      "m-semibold": { "fontSize": "14px", "lineHeight": "24px", "fontWeight": 600 },
+      "m-bold": { "fontSize": "14px", "lineHeight": "24px", "fontWeight": 700 },
+      "l-regular": { "fontSize": "18px", "lineHeight": "28px", "fontWeight": 400 },
+      "l-bold": { "fontSize": "18px", "lineHeight": "28px", "fontWeight": 700 },
+      "xxl-bold": { "fontSize": "24px", "lineHeight": "38px", "fontWeight": 700 },
+      "xxxl-bold": { "fontSize": "72px", "lineHeight": "108px", "fontWeight": 700 }
+    }
+  }
+}

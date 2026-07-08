@@ -1,0 +1,56 @@
+{
+  "name": "Segmented Button",
+  "slug": "segmented-button",
+  "description": "Switches between 2-5 mutually exclusive views or filters.",
+  "props": [
+    { "name": "size", "type": "enum", "options": ["small", "medium"], "default": "medium" },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "disabled", "type": "boolean", "default": false },
+    { "name": "options", "type": "string[]", "default": ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"] },
+    { "name": "selectedIndex", "type": "number", "default": 0 },
+    { "name": "label", "type": "string" },
+    { "name": "hasLabel", "type": "boolean", "default": true }
+  ],
+  "states": ["default", "disabled"],
+  "sizes": ["small", "medium"],
+  "anatomy": [
+    { "name": "Root", "description": "Vertical layout wrapper, 2px gap" },
+    { "name": "Label", "description": "Text label above the container" },
+    { "name": "Container", "description": "Pill-shaped track holding all segment buttons" },
+    { "name": "Segment", "description": "Individual selectable segment button" }
+  ],
+  "dimensions": {
+    "medium": {
+      "container": { "height": 36, "padding": 4, "gap": 4, "cornerRadius": 8 },
+      "segment": { "width": 73, "height": 28, "cornerRadius": 6 }
+    },
+    "small": {
+      "container": { "height": 28, "padding": 4, "gap": 2 },
+      "segment": { "width": 65, "height": 20, "cornerRadius": 6 }
+    }
+  },
+  "typography": {
+    "label": { "fontFamily": "Open Sans", "fontWeight": 600 },
+    "segmentText": { "fontFamily": "Open Sans", "fontWeight": 400 },
+    "medium": { "labelFontSize": 14, "labelLineHeight": 22, "segmentFontSize": 14, "segmentLineHeight": 22 },
+    "small": { "labelFontSize": 12, "labelLineHeight": 16, "segmentFontSize": 12, "segmentLineHeight": 16 }
+  },
+  "colors": {
+    "light": {
+      "containerFill": "#e3e8ed",
+      "label": "#1d232c",
+      "selected": { "fill": "#006bd8", "text": "#ffffff" },
+      "unselected": { "fill": "transparent", "text": "#475263" },
+      "unselectedHover": { "fill": "rgba(255,255,255,0.6)" },
+      "disabledSelected": { "fill": "#8390a2", "text": "#ffffff" }
+    },
+    "dark": {
+      "containerFill": "rgba(255,255,255,0.1)",
+      "label": "#ffffff",
+      "selected": { "fill": "#3389e0", "text": "#ffffff" },
+      "unselected": { "fill": "transparent", "text": "#a6b0be" },
+      "unselectedHover": { "fill": "rgba(255,255,255,0.12)" },
+      "disabledSelected": { "fill": "#64748b", "text": "#ffffff" }
+    }
+  }
+}

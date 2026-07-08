@@ -1,0 +1,159 @@
+{
+  "name": "Button",
+  "slug": "button",
+  "description": "Triggers actions like submitting forms, confirming dialogs, or navigating between steps.",
+  "props": [
+    { "name": "scope", "type": "enum", "options": ["Brand", "Danger", "Success"], "default": "Brand" },
+    { "name": "variant", "type": "enum", "options": ["Primary", "Secondary", "Tertiary"], "default": "Primary" },
+    { "name": "state", "type": "enum", "options": ["Default", "Hover", "Pressed", "Disabled"], "default": "Default" },
+    { "name": "size", "type": "enum", "options": ["Medium", "Small", "XS", "XXS"], "default": "Medium" },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "hasLabel", "type": "boolean", "default": true },
+    { "name": "hasIconStart", "type": "boolean", "default": false },
+    { "name": "hasIconEnd", "type": "boolean", "default": false },
+    { "name": "label", "type": "string", "default": "Button" }
+  ],
+  "states": ["Default", "Hover", "Pressed", "Disabled"],
+  "sizes": ["XXS", "XS", "Small", "Medium"],
+  "anatomy": [
+    { "name": "Container", "description": "Horizontal layout, center-aligned" },
+    { "name": "Leading Icon", "description": "Optional icon before label" },
+    { "name": "Label", "description": "Button text" },
+    { "name": "Trailing Icon", "description": "Optional icon after label" }
+  ],
+  "dimensions": {
+    "Medium": { "height": 36, "fontSize": 14, "lineHeight": 24, "cornerRadius": 8, "itemSpacing": 6, "iconSize": 24, "paddingH": 12, "paddingV": 6 },
+    "Small": { "height": 28, "fontSize": 12, "lineHeight": 16, "cornerRadius": 8, "itemSpacing": 6, "iconSize": 16, "paddingH": 8, "paddingV": 6 },
+    "XS": { "height": 24, "fontSize": 10, "lineHeight": 12, "cornerRadius": 8, "itemSpacing": 6, "iconSize": 12, "paddingH": 6, "paddingV": 6 },
+    "XXS": { "height": 16, "fontSize": 10, "lineHeight": 12, "cornerRadius": 4, "itemSpacing": 2, "iconSize": 12, "paddingH": 4, "paddingV": 2 }
+  },
+  "typography": {
+    "label": { "fontFamily": "Open Sans", "fontWeight": 600 }
+  },
+  "colors": {
+    "light": {
+      "Brand": {
+        "Primary": {
+          "Default": { "fill": "#006bd8", "text": "#ffffff" },
+          "Hover": { "fill": "#005fc0", "text": "#ffffff" },
+          "Pressed": { "fill": "#004c99", "text": "#ffffff" },
+          "Disabled": { "fill": "#e3e8ed", "text": "#8390a2" }
+        },
+        "Secondary": {
+          "Default": { "fill": "#ffffff", "stroke": "#e3e8ed", "text": "#006bd8", "icon": "#1d232c" },
+          "Hover": { "fill": "#f7f8f9", "stroke": "#e3e8ed", "text": "#006bd8", "icon": "#1d232c" },
+          "Pressed": { "fill": "#e3e8ed", "stroke": "#e3e8ed", "text": "#006bd8", "icon": "#1d232c" },
+          "Disabled": { "fill": "transparent", "stroke": "#cbd1db", "text": "#a6b0be", "icon": "#1d232c" }
+        },
+        "Tertiary": {
+          "Default": { "fill": "transparent", "text": "#006bd8" },
+          "Hover": { "fill": "#f7f8f9", "text": "#006bd8" },
+          "Pressed": { "fill": "#e3e8ed", "text": "#006bd8" },
+          "Disabled": { "fill": "#f7f8f9", "text": "#8390a2" }
+        }
+      },
+      "Danger": {
+        "Primary": {
+          "Default": { "fill": "#e62200", "text": "#ffffff" },
+          "Hover": { "fill": "#d11f00", "text": "#ffffff" },
+          "Pressed": { "fill": "#a31800", "text": "#ffffff" },
+          "Disabled": { "fill": "#e3e8ed", "text": "#8390a2" }
+        },
+        "Secondary": {
+          "Default": { "fill": "#ffffff", "stroke": "#e3e8ed", "text": "#e62200", "icon": "#1d232c" },
+          "Hover": { "fill": "#f7f8f9", "stroke": "#e3e8ed", "text": "#e62200", "icon": "#1d232c" },
+          "Pressed": { "fill": "#e3e8ed", "stroke": "#e3e8ed", "text": "#e62200", "icon": "#1d232c" },
+          "Disabled": { "fill": "transparent", "stroke": "#cbd1db", "text": "#a6b0be", "icon": "#1d232c" }
+        },
+        "Tertiary": {
+          "Default": { "fill": "transparent", "text": "#e62200" },
+          "Hover": { "fill": "#f7f8f9", "text": "#e62200" },
+          "Pressed": { "fill": "#e3e8ed", "text": "#e62200" },
+          "Disabled": { "fill": "#f7f8f9", "text": "#8390a2" }
+        }
+      },
+      "Success": {
+        "Primary": {
+          "Default": { "fill": "#008060", "text": "#ffffff" },
+          "Hover": { "fill": "#007457", "text": "#ffffff" },
+          "Pressed": { "fill": "#005b44", "text": "#ffffff" },
+          "Disabled": { "fill": "#e3e8ed", "text": "#8390a2" }
+        },
+        "Secondary": {
+          "Default": { "fill": "#ffffff", "stroke": "#e3e8ed", "text": "#008060", "icon": "#1d232c" },
+          "Hover": { "fill": "#f7f8f9", "stroke": "#e3e8ed", "text": "#008060", "icon": "#1d232c" },
+          "Pressed": { "fill": "#e3e8ed", "stroke": "#e3e8ed", "text": "#008060", "icon": "#1d232c" },
+          "Disabled": { "fill": "transparent", "stroke": "#cbd1db", "text": "#a6b0be", "icon": "#1d232c" }
+        },
+        "Tertiary": {
+          "Default": { "fill": "transparent", "text": "#008060" },
+          "Hover": { "fill": "#f7f8f9", "text": "#008060" },
+          "Pressed": { "fill": "#e3e8ed", "text": "#008060" },
+          "Disabled": { "fill": "#f7f8f9", "text": "#8390a2" }
+        }
+      }
+    },
+    "dark": {
+      "Brand": {
+        "Primary": {
+          "Default": { "fill": "#3389e0", "text": "#ffffff" },
+          "Hover": { "fill": "#006bd8", "text": "#ffffff" },
+          "Pressed": { "fill": "#005fc0", "text": "#ffffff" },
+          "Disabled": { "fill": "#475263", "text": "#8390a2" }
+        },
+        "Secondary": {
+          "Default": { "fill": "transparent", "stroke": "#5b6a7e", "text": "#3389e0", "icon": "#ffffff" },
+          "Hover": { "fill": "#475263", "stroke": "#5b6a7e", "text": "#3389e0", "icon": "#ffffff" },
+          "Pressed": { "fill": "#5b6a7e", "stroke": "#5b6a7e", "text": "#3389e0", "icon": "#ffffff" },
+          "Disabled": { "fill": "transparent", "stroke": "#5b6a7e", "text": "#64748b", "icon": "#ffffff" }
+        },
+        "Tertiary": {
+          "Default": { "fill": "transparent", "text": "#3389e0" },
+          "Hover": { "fill": "#475263", "text": "#3389e0" },
+          "Pressed": { "fill": "#5b6a7e", "text": "#3389e0" },
+          "Disabled": { "fill": "#475263", "text": "#8390a2" }
+        }
+      },
+      "Danger": {
+        "Primary": {
+          "Default": { "fill": "#eb4e33", "text": "#ffffff" },
+          "Hover": { "fill": "#e62200", "text": "#ffffff" },
+          "Pressed": { "fill": "#d11f00", "text": "#ffffff" },
+          "Disabled": { "fill": "#475263", "text": "#8390a2" }
+        },
+        "Secondary": {
+          "Default": { "fill": "transparent", "stroke": "#5b6a7e", "text": "#eb4e33", "icon": "#ffffff" },
+          "Hover": { "fill": "#475263", "stroke": "#5b6a7e", "text": "#eb4e33", "icon": "#ffffff" },
+          "Pressed": { "fill": "#5b6a7e", "stroke": "#5b6a7e", "text": "#eb4e33", "icon": "#ffffff" },
+          "Disabled": { "fill": "transparent", "stroke": "#5b6a7e", "text": "#64748b", "icon": "#ffffff" }
+        },
+        "Tertiary": {
+          "Default": { "fill": "transparent", "text": "#eb4e33" },
+          "Hover": { "fill": "#475263", "text": "#eb4e33" },
+          "Pressed": { "fill": "#5b6a7e", "text": "#eb4e33" },
+          "Disabled": { "fill": "#475263", "text": "#8390a2" }
+        }
+      },
+      "Success": {
+        "Primary": {
+          "Default": { "fill": "#339980", "text": "#ffffff" },
+          "Hover": { "fill": "#008060", "text": "#ffffff" },
+          "Pressed": { "fill": "#007457", "text": "#ffffff" },
+          "Disabled": { "fill": "#475263", "text": "#8390a2" }
+        },
+        "Secondary": {
+          "Default": { "fill": "transparent", "stroke": "#5b6a7e", "text": "#339980", "icon": "#ffffff" },
+          "Hover": { "fill": "#475263", "stroke": "#5b6a7e", "text": "#339980", "icon": "#ffffff" },
+          "Pressed": { "fill": "#5b6a7e", "stroke": "#5b6a7e", "text": "#339980", "icon": "#ffffff" },
+          "Disabled": { "fill": "transparent", "stroke": "#5b6a7e", "text": "#64748b", "icon": "#ffffff" }
+        },
+        "Tertiary": {
+          "Default": { "fill": "transparent", "text": "#339980" },
+          "Hover": { "fill": "#475263", "text": "#339980" },
+          "Pressed": { "fill": "#5b6a7e", "text": "#339980" },
+          "Disabled": { "fill": "#475263", "text": "#8390a2" }
+        }
+      }
+    }
+  }
+}

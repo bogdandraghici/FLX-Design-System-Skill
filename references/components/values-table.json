@@ -1,0 +1,68 @@
+{
+  "name": "Tables",
+  "formerName": "Values Table",
+  "slug": "values-table",
+  "description": "Editable table for managing simple items that don't warrant their own details page, with inline editing and validation.",
+  "props": [
+    { "name": "editMode", "type": "boolean", "default": false },
+    { "name": "error", "type": "boolean", "default": false },
+    { "name": "batchEdit", "type": "boolean", "default": false },
+    { "name": "entityMode", "type": "boolean", "default": false }
+  ],
+  "states": ["read-only", "editing", "error", "warning"],
+  "sizes": [],
+  "anatomy": [
+    { "name": "Table Container", "description": "Outer wrapper with white background, 1px border #cbd1db, 16px corner radius" },
+    { "name": "Header Row", "description": "Column headers with semi-transparent #f7f8f980 background" },
+    { "name": "Header Column", "description": "Individual column header with 12px SemiBold #64748b label" },
+    { "name": "Data Row", "description": "Horizontal row of cells with action column" },
+    { "name": "Read-only Cell", "description": "Plain text cell, 14px Regular #0f1114, placeholder at 30% opacity" },
+    { "name": "Editable Cell", "description": "Inline input field, 28px height, 8px corner radius, 1px border (#cbd1db default, #006bd8 focused)" },
+    { "name": "Error Cell", "description": "Input field with red border #e62200" },
+    { "name": "Action Column", "description": "Contains row action buttons" },
+    { "name": "Edit Button", "description": "28x28 icon button, 8px corner radius, white fill, #e3e8ed border; disabled: transparent fill, #cbd1db border, #a6b0be icon" },
+    { "name": "Delete Button", "description": "28x28 icon button, 8px corner radius, white fill, #e3e8ed border; disabled: transparent fill, #cbd1db border, #a6b0be icon" },
+    { "name": "Save Button", "description": "28x28 icon button, 8px corner radius, #008060 active, #e3e8ed fill with #8390a2 icon when disabled" },
+    { "name": "Cancel Button", "description": "28x28 icon button, #e62200" },
+    { "name": "Error Message", "description": "12px Regular red text below the cell" },
+    { "name": "Tooltip", "description": "Validation tooltip on hover" }
+  ],
+  "dimensions": {
+    "container": { "cornerRadius": 16, "borderWidth": 1, "borderColor": "#cbd1db" },
+    "actionButtons": { "width": 28, "height": 28, "cornerRadius": 8 },
+    "editableCell": { "cornerRadius": 8, "height": 28 }
+  },
+  "variants": {
+    "bordered": "Table sits inside another container like a card or settings panel. 1px #cbd1db border, no shadow.",
+    "standalone": "Table is the card itself, the top-level surface. No border, shadow 2px 2px 24px rgba(22,52,98,0.08), white header background.",
+    "batchEdit": "Always-on editing: all rows render inline inputs at once. Use when the page already has a save/discard mechanism.",
+    "entityMode": "Entity table for complex items that open into a detail page or modal (workflows, integrations). Value tables are for simple items without their own detail page."
+  },
+  "guidance": {
+    "stickyHeader": "When the table has many rows, keep the header sticky so column context is visible during scroll."
+  },
+  "typography": {
+    "header": { "fontFamily": "Open Sans", "fontSize": 12, "fontWeight": 600, "color": "#64748b" },
+    "cellValue": { "fontFamily": "Open Sans", "fontSize": 14, "fontWeight": 400 },
+    "errorMessage": { "fontFamily": "Open Sans", "fontSize": 12, "fontWeight": 400 },
+    "placeholderOpacity": 0.3
+  },
+  "colors": {
+    "light": {
+      "container": { "background": "#ffffff", "border": "#cbd1db" },
+      "header": { "background": "#f7f8f980" },
+      "headerText": "#64748b",
+      "valueText": "#0f1114",
+      "editCellBorder": "#cbd1db",
+      "editCellBorderFocused": "#006bd8",
+      "errorBorder": "#e62200",
+      "warningIcon": "#fd6b1c",
+      "saveActive": "#008060",
+      "saveDisabled": { "fill": "#e3e8ed", "icon": "#8390a2" },
+      "cancel": "#e62200",
+      "buttonBorder": "#e3e8ed",
+      "buttonDisabled": { "fill": "transparent", "border": "#cbd1db", "icon": "#a6b0be" },
+      "standaloneShadow": "2px 2px 24px rgba(22,52,98,0.08)"
+    }
+  }
+}

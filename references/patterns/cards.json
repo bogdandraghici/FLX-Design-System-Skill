@@ -1,0 +1,118 @@
+{
+  "name": "Cards",
+  "slug": "cards",
+  "description": "The FlowX card model: Primary cards structure a page, Secondary cards group content inside them. Every card shares a 16px radius; the difference is shadow versus border and the padding and gap step.",
+  "shared": {
+    "radius": 16,
+    "fontFamily": "var(--font-flowx)",
+    "layout": "column flex; padding applies equally to both axes; gap is the spacing between the card's stacked children",
+    "pageBackground": { "token": "--flowx-neutrals-50", "hex": "#f7f8f9", "note": "grey app background Primary cards sit on" }
+  },
+  "variants": {
+    "primary": {
+      "role": "Structures a page. Sits directly on the grey page background and holds everything else.",
+      "surface": { "hex": "#ffffff" },
+      "shadow": "2px 2px 24px rgba(22,52,98,.08)",
+      "border": "none",
+      "radius": 16,
+      "padding": 24,
+      "gap": 16,
+      "notes": [
+        "Titles and icons are optional: can lead with an icon tile and title, carry a title alone, or have neither",
+        "Full-bleed content like a table can drop the padding and run edge to edge, still clipped to the card's 16px corner radius (white surface + shadow + overflow hidden, no card padding)"
+      ]
+    },
+    "secondary": {
+      "role": "Groups content inside a Primary card.",
+      "surface": "transparent or white",
+      "shadow": "none",
+      "border": { "width": 1, "style": "solid", "token": "--flowx-neutrals-100", "hex": "#e3e8ed" },
+      "radius": 16,
+      "sizes": {
+        "L": {
+          "padding": 24,
+          "gap": 16,
+          "whenToUse": [
+            "Confusion matrix and training distribution subsections",
+            "Protocol, authorization and general settings subsections in an external file-storage data source",
+            "Evaluators and scorers in the Eval Definitions tab"
+          ]
+        },
+        "M": {
+          "padding": 16,
+          "gap": 8,
+          "whenToUse": [
+            "Score cards (label, percentage and progress bar) inside the experiment report when comparing two experiments in Evals"
+          ]
+        },
+        "S": {
+          "padding": 8,
+          "gap": 4,
+          "whenToUse": [
+            "Improvement Suggestions rows on the experiment page"
+          ]
+        }
+      },
+      "notes": [
+        "The three sizes differ only by padding and gap",
+        "Titles and icons are optional: can pair an icon with a title, carry only a label, or have neither"
+      ]
+    }
+  },
+  "typographyInCards": {
+    "fontFamily": "var(--font-flowx)",
+    "pageLeadTitle": { "fontSize": 24, "fontWeight": 700, "lineHeight": 38, "color": { "token": "--flowx-neutrals-900", "hex": "#1d232c" } },
+    "cardTitle": { "fontSize": 18, "fontWeight": 700, "lineHeight": 28, "color": { "token": "--flowx-neutrals-900", "hex": "#1d232c" } },
+    "description": { "fontSize": 12, "fontWeight": 400, "lineHeight": 16, "color": { "token": "--flowx-neutrals-500", "hex": "#64748b" } },
+    "bodyRowText": { "fontSize": 12, "lineHeight": 18, "color": { "token": "--flowx-neutrals-500", "hex": "#64748b" }, "leadEmphasis": { "fontWeight": 700, "color": { "token": "--flowx-neutrals-900", "hex": "#1d232c" } } },
+    "microLabelUppercase": { "fontSize": 11, "fontWeight": 600, "textTransform": "uppercase", "letterSpacing": "0.04em", "color": { "token": "--flowx-neutrals-400", "hex": "#8390a2" } },
+    "bigStat": { "fontSize": 24, "fontWeight": 700, "fontVariantNumeric": "tabular-nums" }
+  },
+  "commonInnerElements": {
+    "dsButton": {
+      "note": "White secondary button used inside cards",
+      "height": 36,
+      "padding": "6px 12px",
+      "radius": 8,
+      "background": "#ffffff",
+      "border": { "width": 1, "token": "--flowx-neutrals-100", "hex": "#e3e8ed" },
+      "text": { "fontSize": 14, "fontWeight": 600, "lineHeight": 24, "color": { "token": "--flowx-blue-500", "hex": "#006bd8" } }
+    },
+    "iconTile": {
+      "note": "Square icon container leading a card header",
+      "sizes": [54, 48],
+      "radius": 8,
+      "background": { "token": "--flowx-neutrals-50", "hex": "#f7f8f9" }
+    },
+    "progressTrack": { "radius": 999, "background": { "token": "--flowx-neutrals-100", "hex": "#e3e8ed" }, "heights": [4, 8, 12] },
+    "progressFills": {
+      "blue": { "token": "--flowx-blue-400", "hex": "#3389e0" },
+      "green": { "token": "--flowx-green-500", "hex": "#008060" },
+      "red": { "token": "--flowx-red-500", "hex": "#e62200" }
+    },
+    "statusPill": {
+      "note": "Per-class accuracy pill",
+      "padding": "4px 12px",
+      "radius": 999,
+      "background": { "token": "--flowx-neutrals-50", "hex": "#f7f8f9" },
+      "border": { "width": 1, "token": "--flowx-neutrals-100", "hex": "#e3e8ed" },
+      "dot": { "size": 6, "tones": { "ok": { "token": "--flowx-green-500", "hex": "#008060" }, "warn": { "token": "--flowx-orange-500", "hex": "#fd6b1c" }, "bad": { "token": "--flowx-red-500", "hex": "#e62200" } } },
+      "valueTextTones": { "ok": { "token": "--flowx-green-700", "hex": "#005b44" }, "warn": { "token": "--flowx-orange-700", "hex": "#b44c14" }, "bad": { "token": "--flowx-red-600", "hex": "#d11f00" } }
+    },
+    "innerDivider": { "border": "1px solid #e3e8ed", "token": "--flowx-neutrals-100" },
+    "fullBleedTableGrid": { "border": "0.5px solid #cbd1db", "headerHeight": 50, "rowHeight": 56, "cellPaddingX": 14, "headerText": { "fontSize": 12, "fontWeight": 600, "lineHeight": 18, "color": "#64748b" }, "cellText": { "fontSize": 14, "color": "#0f1114" } }
+  },
+  "guidelines": [
+    "Pick the family by where the card sits: Primary on the grey page background, Secondary inside a Primary",
+    "Every card uses a 16px corner radius, no exceptions",
+    "Primary is white with a shadow and no border; Secondary has a 1px neutral-100 border and no shadow or elevation",
+    "Padding applies to both axes equally; gap spaces the card's stacked children",
+    "Secondary comes in three sizes that differ only by padding and gap: L 24/16, M 16/8, S 8/4",
+    "Titles and icons are optional in both families",
+    "Full-bleed content like a table may drop the Primary padding and run edge to edge, clipped to the 16px radius"
+  ],
+  "themes": {
+    "light": "documented (all specimens render light)",
+    "dark": "not documented; the pattern page keeps example mockups light"
+  }
+}

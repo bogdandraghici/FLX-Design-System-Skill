@@ -1,0 +1,80 @@
+{
+  "name": "Dropdown Panel",
+  "slug": "dropdown-panel",
+  "aliases": ["tree"],
+  "description": "A hierarchical dropdown list for selecting items with optional search, grouping, and multiple selection modes.",
+  "props": [
+    { "name": "type", "type": "enum", "options": ["Multi-Select", "Single"], "default": "Multi-Select" },
+    { "name": "size", "type": "enum", "options": ["Medium", "Small"], "default": "Medium" },
+    { "name": "inverted", "type": "boolean", "default": false },
+    { "name": "nesting", "type": "boolean", "default": false },
+    { "name": "showHeader", "type": "boolean", "default": true }
+  ],
+  "states": ["default", "hover", "selected", "disabled"],
+  "sizes": ["Medium", "Small"],
+  "anatomy": [
+    { "name": "SelectHeaderRow", "description": "Top row containing a select-all checkbox icon and a search input field, 8px vertical padding, 8px gap" },
+    { "name": "SearchInput", "description": "Text input with magnifying glass icon for filtering, 12px horizontal padding, 6px gap, 8px corner radius, 1px border" },
+    { "name": "CheckboxRadioIcon", "description": "Selection indicator, checkbox for multi-select, radio for single-select" },
+    { "name": "RowLabel", "description": "Primary text content of each dropdown row, truncates with ellipsis" },
+    { "name": "GroupParent", "description": "Bold (weight 600) category row with a caret icon, used when nesting is enabled" },
+    { "name": "GroupChild", "description": "Indented row nested under a group parent, indented via left padding (56px medium, 48px small)" },
+    { "name": "CaretIcon", "description": "Chevron on group parent rows indicating expandable/collapsible state, 16x16, 1.5 stroke width" },
+    { "name": "Separator", "description": "Horizontal divider line between groups of items" }
+  ],
+  "dimensions": {
+    "medium": { "panelWidth": 244, "rowHeight": 32, "iconSize": 20, "searchInputHeight": 36, "childPaddingLeft": 56 },
+    "small": { "panelWidth": 200, "rowHeight": 24, "iconSize": 16, "searchInputHeight": 28, "childPaddingLeft": 48 },
+    "panel": { "cornerRadius": 8, "horizontalPadding": 8, "shadow": "0 8px 16px #1634621a" },
+    "row": { "padding": 4, "gap": 8, "cornerRadius": 4, "rowListGap": 2, "rowListPaddingBottom": 8 },
+    "headerRow": { "paddingTop": 8, "paddingBottom": 8, "gap": 8 },
+    "searchInput": { "paddingLeft": 12, "paddingRight": 12, "gap": 6, "cornerRadius": 8, "borderWidth": 1 },
+    "searchIcon": { "width": 20, "height": 20, "strokeWidth": 1.2 },
+    "caretIcon": { "width": 16, "height": 16, "strokeWidth": 1.5 },
+    "checkbox": { "medium": { "size": 20, "cornerRadius": 4 }, "small": { "size": 16, "cornerRadius": 3.2 }, "strokeWidth": 1 },
+    "radio": { "medium": { "size": 20, "outerRadius": 9, "innerDotRadius": 4 }, "small": { "size": 16, "outerRadius": 7, "innerDotRadius": 3 }, "strokeWidth": 1 }
+  },
+  "typography": {
+    "medium": { "fontSize": 14, "lineHeight": 24 },
+    "small": { "fontSize": 12, "lineHeight": 16 },
+    "rowLabelWeight": 400,
+    "groupParentWeight": 600
+  },
+  "colors": {
+    "light": {
+      "panel": { "fill": "#ffffff" },
+      "defaultRow": { "background": "transparent", "text": "#000000" },
+      "hoverRow": { "background": "#f7f8f9" },
+      "selectedRow": { "background": "#e6f0fb", "text": "#006bd8" },
+      "disabledRow": { "text": "#a6b0be", "opacity": 0.5 },
+      "checkboxRadio": { "checkedFill": "#006bd8", "checkedDisabledFill": "#64748b", "uncheckedStroke": "#cbd1db", "uncheckedDisabledStroke": "rgba(15,17,20,0.1)", "checkmark": "#ffffff" },
+      "icons": { "caret": "#64748b", "search": "#64748b" },
+      "searchInput": { "border": "#e3e8ed", "fill": "#ffffff", "placeholderText": "#64748b" }
+    },
+    "dark": {
+      "panel": { "fill": "#475263" },
+      "defaultRow": { "background": "transparent", "text": "#ffffff" },
+      "hoverRow": { "background": "#2a313a" },
+      "selectedRow": { "background": "#003b77", "text": "#b0d1f3" },
+      "disabledRow": { "text": "#8390a2", "opacity": 0.5 },
+      "checkboxRadio": { "checkedFill": "#3389e0", "checkedDisabledFill": "#a6b0be", "uncheckedStroke": "#64748b", "uncheckedDisabledStroke": "#5b6a7e", "checkmark": "#ffffff" },
+      "icons": { "caret": "#a6b0be", "search": "#a6b0be" },
+      "searchInput": { "border": "#64748b", "fill": "transparent", "placeholderText": "#a6b0be" }
+    }
+  },
+  "guidelines": {
+    "do": [
+      "Use multi-select when users need to pick several items",
+      "Use single-select when only one choice is valid",
+      "Enable nesting for hierarchical data like locations or categories",
+      "Show the search header when the list contains more than 7 items",
+      "Use the small size in compact layouts like sidebars, popovers, or canvas areas"
+    ],
+    "dont": [
+      "Don't use for flat lists with fewer than 5 items, use checkboxes or radios instead",
+      "Don't nest more than 2 levels deep",
+      "Don't hide the header when search is essential for discoverability",
+      "Don't mix multi and single selection within the same instance"
+    ]
+  }
+}

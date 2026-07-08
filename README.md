@@ -1,7 +1,10 @@
 # FlowX Design System — Claude Skill
 
 <p align="center">
-  <img src="assets/claude-x-flowx-highfive.gif" alt="Claude and FlowX high five" width="480">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/claude-x-flowx-highfive-dark.gif">
+    <img src="assets/claude-x-flowx-highfive-light.gif" alt="Claude and FlowX high five" width="480">
+  </picture>
 </p>
 
 A [Claude](https://claude.com/claude-code) skill that teaches Claude the FlowX Design System, so any UI it builds or reviews for you matches FlowX's real colors, typography, spacing, components, and patterns — instead of generic AI defaults.

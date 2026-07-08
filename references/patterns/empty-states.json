@@ -1,0 +1,102 @@
+{
+  "name": "Empty States",
+  "slug": "empty-states",
+  "status": "Proposal",
+  "description": "What a section or page shows when it has nothing to display yet: a centered stack of a 24px icon, a bold title, a caption, and an optional secondary-button call to action, optionally inside a bordered container.",
+  "shared": {
+    "fontFamily": "var(--font-flowx)",
+    "layout": "Centered column flex stack, text-align center. The empty state is placed centered inside whatever section has no content (usually a Primary card, see patterns/cards.json).",
+    "sits_in": "Typically centered inside a Primary card (white surface, 2px 2px 24px rgba(22,52,98,.08) shadow, 16px radius) that stands in for the page's missing content."
+  },
+  "anatomy": {
+    "icon": {
+      "size": 24,
+      "color": { "token": "--flowx-neutrals-500", "hex": "#64748b" },
+      "marginBottom": 12,
+      "fallbackIcon": "CircleDashed",
+      "note": "Phosphor icon. Match the icon to the situation. Use CircleDashed as the neutral fallback when no situation-specific icon fits."
+    },
+    "title": {
+      "fontSize": 14,
+      "lineHeight": 24,
+      "fontWeight": 700,
+      "color": { "token": "--flowx-neutrals-900", "hex": "#1d232c" },
+      "marginBottom": 4
+    },
+    "subtitle": {
+      "fontSize": 12,
+      "lineHeight": 16,
+      "fontWeight": 400,
+      "color": { "token": "--flowx-neutrals-500", "hex": "#64748b" },
+      "note": "The caption. This is the only element that survives in the Small size."
+    },
+    "cta": {
+      "marginTop": 24,
+      "component": "Secondary button (white)",
+      "optional": true,
+      "note": "Only add a CTA when there is a clear next step.",
+      "spec": {
+        "layout": "inline-flex, align-items center, gap 6, white-space nowrap",
+        "background": { "hex": "#ffffff" },
+        "border": { "width": 1, "style": "solid", "token": "--flowx-neutrals-100", "hex": "#e3e8ed" },
+        "radius": 8,
+        "text": { "fontSize": 14, "fontWeight": 600, "lineHeight": 24, "color": { "token": "--flowx-blue-500", "hex": "#006bd8" } },
+        "sizes": {
+          "Medium": { "height": 36, "padding": "6px 12px" },
+          "Small": { "height": 32, "padding": "6px 8px" }
+        },
+        "note": "iconEnd (e.g. an ArrowRight, 16px) is optional and sits after the label."
+      }
+    },
+    "container": {
+      "optional": true,
+      "note": "Bordered container wrapping the centered stack. Used inside a Primary card to frame the empty state.",
+      "padding": 24,
+      "background": { "hex": "#ffffff" },
+      "border": { "width": 1, "style": "solid", "token": "--flowx-neutrals-100", "hex": "#e3e8ed" },
+      "radius": 16
+    }
+  },
+  "sizes": {
+    "Medium": {
+      "role": "The full model: icon + title + subtitle + optional CTA.",
+      "shows": ["icon", "title", "subtitle", "cta (optional)"],
+      "whenToUse": [
+        "Where there is room to guide the user",
+        "When the empty state sits in an area with M-sized elements, such as admin pages (use the Medium CTA)"
+      ]
+    },
+    "Small": {
+      "role": "Subtitle only. Drops the icon, title, and CTA, leaving just the 12px caption.",
+      "shows": ["subtitle"],
+      "whenToUse": [
+        "Cramped or dense sections where only the empty message fits, such as a dropdown panel or a tight subsection",
+        "When the surrounding area uses small components, such as a config panel (pair with a Small CTA if a CTA is genuinely needed)"
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "label": "First use / no data yet",
+      "example": "Trained Models: Stack icon, title \"No trained models yet\", subtitle \"Each training run adds a version here.\", CTA \"Go to Classes\" (Small, with an ArrowRight)"
+    },
+    {
+      "label": "No results",
+      "example": "Workflow node search: FlowArrow icon, title \"No Results\", subtitle \"There are no nodes matching your search.\", no CTA"
+    }
+  ],
+  "guidelines": [
+    "Use a centered stack to explain why a section has no content and what action fills it",
+    "The same model covers every no-content situation; match the icon and copy to the situation",
+    "Only add a CTA when there is a clear next step",
+    "Match the size to the components around the empty state",
+    "Medium (full model) where there is room to guide the user; use a Medium CTA in areas with M-sized elements such as admin pages",
+    "Small (subtitle only) for limited space such as a dropdown panel or a tight subsection; use a Small CTA when the surrounding area uses small components such as a config panel",
+    "Fall back to the CircleDashed icon when no situation-specific icon fits"
+  ],
+  "related": ["loaders", "cards", "button"],
+  "themes": {
+    "light": "documented (all specimens render light)",
+    "dark": "not documented; the pattern page keeps example mockups light"
+  }
+}

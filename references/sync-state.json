@@ -1,7 +1,7 @@
 {
   "sourceRepo": "https://github.com/flowx-ai/FlowX-Design-System",
   "localRepoPath": "/Users/bogdandraghici/Desktop/vibes/FLX DS",
-  "lastSyncedCommit": "0778c653306826999b79d9bb6bc3167f3be2b1b3",
+  "lastSyncedCommit": "e4e53623212b8ad823c043cebfcc54a6d96cdc67",
   "lastSyncedDate": "2026-07-08",
   "note": "Everything in references/ reflects the design system website at lastSyncedCommit. To update, run the flxds_skill_sync skill from the repo."
 }

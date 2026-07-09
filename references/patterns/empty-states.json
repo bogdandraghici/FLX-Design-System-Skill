@@ -6,7 +6,8 @@
   "shared": {
     "fontFamily": "var(--font-flowx)",
     "layout": "Centered column flex stack, text-align center. The empty state is placed centered inside whatever section has no content (usually a Primary card, see patterns/cards.json).",
-    "sits_in": "Typically centered inside a Primary card (white surface, 2px 2px 24px rgba(22,52,98,.08) shadow, 16px radius) that stands in for the page's missing content."
+    "sits_in": "Typically centered inside a Primary card (white surface, 2px 2px 24px rgba(22,52,98,.08) shadow, 16px radius) that stands in for the page's missing content.",
+    "placement": "Replaces only the content area. Keep filters, search, and other actions visible above it; a table's header row and toolbar stay put, only the row area becomes the empty state."
   },
   "anatomy": {
     "icon": {
@@ -34,7 +35,7 @@
       "marginTop": 24,
       "component": "Secondary button (white)",
       "optional": true,
-      "note": "Only add a CTA when there is a clear next step.",
+      "note": "On by default for No content empty states, but not mandatory. Only add a CTA when there is a clear next step; drop it when there is no single clear next step.",
       "spec": {
         "layout": "inline-flex, align-items center, gap 6, white-space nowrap",
         "background": { "hex": "#ffffff" },
@@ -50,7 +51,7 @@
     },
     "container": {
       "optional": true,
-      "note": "Bordered container wrapping the centered stack. Used inside a Primary card to frame the empty state.",
+      "note": "Bordered container wrapping the centered stack, used inside a Primary card to frame the empty state. Add it when the empty state has no parent container of its own or the layout needs a clear boundary; skip it when a parent such as a table, panel, or card already frames the space.",
       "padding": 24,
       "background": { "hex": "#ffffff" },
       "border": { "width": 1, "style": "solid", "token": "--flowx-neutrals-100", "hex": "#e3e8ed" },
@@ -64,7 +65,8 @@
       "whenToUse": [
         "Where there is room to guide the user",
         "When the empty state sits in an area with M-sized elements, such as admin pages (use the Medium CTA)"
-      ]
+      ],
+      "example": "Stores: shown inside the row area of a real entity table (Values Table's entity mode: 0.5px #cbd1db border, 50px header with 50%-opacity neutrals-50 background), CircleDashed icon, title \"There are no stores yet\", subtitle \"Add content manually, generate it from workflows or create it automatically when testing\", CTA \"Add Store\" (Medium). Only the row area holds the empty state; the table header stays visible."
     },
     "Small": {
       "role": "Subtitle only. Drops the icon, title, and CTA, leaving just the 12px caption.",
@@ -78,22 +80,54 @@
   "scenarios": [
     {
       "label": "First use / no data yet",
-      "example": "Trained Models: Stack icon, title \"No trained models yet\", subtitle \"Each training run adds a version here.\", CTA \"Go to Classes\" (Small, with an ArrowRight)"
+      "example": "Classes: Stack icon, title \"No classes yet\", subtitle \"The categories your model sorts pages into — you need at least two to train.\", CTA \"Add Class\" (Small, no icon)"
     },
     {
       "label": "No results",
       "example": "Workflow node search: FlowArrow icon, title \"No Results\", subtitle \"There are no nodes matching your search.\", no CTA"
+    },
+    {
+      "label": "Canvas empty state",
+      "example": "UI Designer canvas: Layout icon, title \"UI Designer\", subtitle \"Drag components from the sidebar\", no CTA, no container. Canvas empty states are centered in the view and do not use a bordered container."
     }
   ],
   "guidelines": [
     "Use a centered stack to explain why a section has no content and what action fills it",
     "The same model covers every no-content situation; match the icon and copy to the situation",
-    "Only add a CTA when there is a clear next step",
+    "Replaces only the content area; keep filters, search, and other actions visible above it",
+    "CTA is on by default for No content empty states but not mandatory; only add one when there is a clear next step",
+    "Container is optional; add it when the empty state has no parent container of its own or the layout needs a clear boundary, skip it when a parent such as a table, panel, or card already frames the space",
+    "Canvas empty states are centered in the view and do not use a container",
     "Match the size to the components around the empty state",
     "Medium (full model) where there is room to guide the user; use a Medium CTA in areas with M-sized elements such as admin pages",
     "Small (subtitle only) for limited space such as a dropdown panel or a tight subsection; use a Small CTA when the surrounding area uses small components such as a config panel",
     "Fall back to the CircleDashed icon when no situation-specific icon fits"
   ],
+  "copyGuidelines": {
+    "title": [
+      "Name the state, don't decorate it",
+      "Use sentence case, no ending period, and no more than five words",
+      "No-data title: \"No {items} yet\"",
+      "No-results title: \"No results\""
+    ],
+    "subtitle": [
+      "Add new information; never restate the title",
+      "Write one sentence, sentence case, with an ending period",
+      "Default: describe what fills it, such as \"UI Flows you create appear here.\"",
+      "When there is no CTA, explain how to start, such as \"Drag components from the sidebar.\"",
+      "When value is not obvious, explain why it matters, such as \"Metadata keys make content easier to find.\"",
+      "For no-results states, flip to recovery, such as \"No nodes match your search.\""
+    ],
+    "button": [
+      "Use verb-first, sentence case copy with no ending period",
+      "Match the toolbar or destination label exactly",
+      "Include only one button, and only when there is a clear next step"
+    ],
+    "acrossTheApp": [
+      "Write both states for anything searchable: no-data is not no-results",
+      "Use one name per concept across title, subtitle, and button"
+    ]
+  },
   "related": ["loaders", "cards", "button"],
   "themes": {
     "light": "documented (all specimens render light)",

@@ -7,7 +7,7 @@
   </picture>
 </p>
 
-A [Claude](https://claude.com/claude-code) skill that teaches Claude the FlowX Design System, so any UI it builds or reviews for you matches FlowX's real colors, typography, spacing, components, and patterns — instead of generic AI defaults.
+A Claude skill that teaches Claude the FlowX Design System, so any UI it builds or reviews for you matches FlowX's real colors, typography, spacing, components, and patterns — instead of generic AI defaults.
 
 Install it once, then just mention "FlowX" in your request. Claude reads the authoritative token and component specs bundled here before it writes a single line of styling.
 
@@ -15,7 +15,7 @@ Install it once, then just mention "FlowX" in your request. Claude reads the aut
 
 - **Building prototypes that are on-brand from the first draft.** Ask Claude to build a settings page, a form, a dashboard "using the FlowX design system" and it uses the correct brand blue (`#006bd8`), Open Sans, the real button/input/card specs, and the right page structure — no guessing, no rounding, no Material/Bootstrap leftovers.
 - **Auditing pages you've already built.** Point Claude at a prototype and ask "does this follow the FlowX design system?" It inventories every color, font, radius, and spacing value, compares them against the specs, and reports what's off — a wrong hex, a foreign font, an off-scale padding — with the correct value and where it comes from.
-- **A single source of truth.** The specs are exported straight from the FlowX design system website, in both human-readable Markdown and machine-readable JSON.
+- **A single source of truth.** The specs are exported straight from the [FlowX design system website](https://flowx-ai.github.io/FlowX-Design-System/), in both human-readable Markdown and machine-readable JSON.
 
 ## Install
 
@@ -74,6 +74,7 @@ references/
 
   patterns/        Page-level patterns (how to compose a screen)
     cards          Primary and Secondary cards, full-bleed table mode
+    empty-states   No-content/no-results/canvas scenarios, 2 sizes, copy guidance
     modals         4 widths, anatomy, button placement, multi-step
     typography-hierarchy  Text roles and section composition rules
 
@@ -90,4 +91,4 @@ Each spec is a pair: a `.json` file (authoritative exact values Claude reads) an
 
 ## Staying current
 
-These files are a snapshot of the FlowX design system website, taken at the commit recorded in `references/sync-state.json` (last synced **2026-07-08**). When the design system changes, the specs are re-synced from the site and this repo is updated — `git pull` to get the latest.
+These files are a snapshot of the FlowX design system website, taken at the commit recorded in `references/sync-state.json` (last synced **2026-07-09**). When the design system changes, the specs are re-synced from the site and this repo is updated — `git pull` to get the latest.

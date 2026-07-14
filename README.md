@@ -76,6 +76,7 @@ references/
     cards          Primary and Secondary cards, full-bleed table mode
     empty-states   No-content/no-results/canvas scenarios, 2 sizes, copy guidance
     modals         4 widths, anatomy, button placement, multi-step
+    alerts         Destructive-confirmation dialog: red primary action, consequence body, references row
     typography-hierarchy  Text roles and section composition rules
 
   sync-state.json  Records which design-system-site commit these specs reflect
@@ -91,4 +92,4 @@ Each spec is a pair: a `.json` file (authoritative exact values Claude reads) an
 
 ## Staying current
 
-These files are a snapshot of the FlowX design system website, taken at the commit recorded in `references/sync-state.json` (last synced **2026-07-09**). When the design system changes, the specs are re-synced from the site and this repo is updated — `git pull` to get the latest.
+These files are a snapshot of the FlowX design system website, taken at the commit recorded in `references/sync-state.json` (last synced **2026-07-13**). When the design system changes, the specs are re-synced from the site and this repo is updated — `git pull` to get the latest.

@@ -15,7 +15,7 @@
       "color": { "token": "--flowx-neutrals-500", "hex": "#64748b" },
       "marginBottom": 12,
       "fallbackIcon": "CircleDashed",
-      "note": "Phosphor icon. Match the icon to the situation. Use CircleDashed as the neutral fallback when no situation-specific icon fits."
+      "note": "Phosphor icon. Match the icon to the situation. No-results states always use the MagnifyingGlass icon. Use CircleDashed as the neutral fallback when no situation-specific icon fits."
     },
     "title": {
       "fontSize": 14,
@@ -84,7 +84,7 @@
     },
     {
       "label": "No results",
-      "example": "Workflow node search: FlowArrow icon, title \"No Results\", subtitle \"There are no nodes matching your search.\", no CTA"
+      "example": "Workflow node search: MagnifyingGlass icon, title \"No results\", subtitle \"There are no nodes matching your search.\", no CTA. No-results states always use the MagnifyingGlass icon."
     },
     {
       "label": "Canvas empty state",
@@ -94,6 +94,7 @@
   "guidelines": [
     "Use a centered stack to explain why a section has no content and what action fills it",
     "The same model covers every no-content situation; match the icon and copy to the situation",
+    "No-results empty states always use the MagnifyingGlass icon",
     "Replaces only the content area; keep filters, search, and other actions visible above it",
     "CTA is on by default for No content empty states but not mandatory; only add one when there is a clear next step",
     "Container is optional; add it when the empty state has no parent container of its own or the layout needs a clear boundary, skip it when a parent such as a table, panel, or card already frames the space",

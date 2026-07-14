@@ -1,6 +1,6 @@
 ---
 name: flowx-design-system
-description: Use when the user asks to build, style, or update any UI or design prototype using the FlowX Design System (FlowX DS, FlowX tokens, FlowX components), or to check, audit, or review existing pages/prototypes for compliance with FlowX styles and components. Supplies authoritative tokens for colors, typography, spacing, elevation, radius, and opacity, component specs for button, checkbox, radio, input-field, select-field, switch, segmented-button, tabs, dropdown-panel (tree), and values-table, plus pattern specs for cards, modals, typographic hierarchy, and empty states. Triggers on explicit mentions like "FlowX", "FlowX Design System", "FlowX DS", references to the FlowX component library, or requests like "does this follow the design system". Do NOT activate for generic UI work that doesn't mention FlowX.
+description: Use when the user asks to build, style, or update any UI or design prototype using the FlowX Design System (FlowX DS, FlowX tokens, FlowX components), or to check, audit, or review existing pages/prototypes for compliance with FlowX styles and components. Supplies authoritative tokens for colors, typography, spacing, elevation, radius, and opacity, component specs for button, checkbox, radio, input-field, select-field, switch, segmented-button, tabs, dropdown-panel (tree), and values-table, plus pattern specs for cards, modals, typographic hierarchy, empty states, and alerts. Triggers on explicit mentions like "FlowX", "FlowX Design System", "FlowX DS", references to the FlowX component library, or requests like "does this follow the design system". Do NOT activate for generic UI work that doesn't mention FlowX.
 ---
 
 # FlowX Design System
@@ -60,6 +60,7 @@ Paths are relative to this SKILL.md.
 - `modals.json` — 4 widths (XS 400 / S 600 / M 800 / L 80% screen), header/content/footer anatomy, button placement rules, multi-step behavior, light + dark
 - `typography-hierarchy.json` — named text roles (Page Title, Section Title, Subsection Title, Description), spacing between levels, section-card composition rules
 - `empty-states.json` — the no-content model: centered stack of a 24px icon, bold title, caption, and optional secondary-button CTA, optionally in a bordered container; Medium (full) vs Small (subtitle only) sizes
+- `alerts.json` — destructive-confirmation dialog (fixed S / 600px variant of the modal): centered title/subtitle, left-aligned consequence body, optional reference row, and a red primary destructive action on the right beside a safe Cancel
 
 If the user asks for something not in this index (nav bar, toast, tooltip, accordion, stepper, breadcrumb, etc.), fall back to rule 7: **compose from primitives + foundation tokens**.
 
@@ -70,6 +71,7 @@ For any full page or screen, start from the patterns, not the components:
 2. Set headings and body text from the **typography hierarchy** roles (`patterns/typography-hierarchy.json`) — never improvise font sizes.
 3. Dialogs follow `patterns/modals.json`, including its button placement rules.
 4. When a section or page has no content yet, use the **empty state** model (`patterns/empty-states.json`) centered inside its card.
+5. For destructive, irreversible confirmations (delete/discard), use the **alert** model (`patterns/alerts.json`) rather than a plain modal — red primary action on the right, safe Cancel on the left.
 5. Fill in the interactive elements from `references/components/`.
 
 ## Auditing an existing prototype

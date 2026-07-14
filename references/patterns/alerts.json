@@ -1,0 +1,111 @@
+{
+  "name": "Alerts",
+  "slug": "alerts",
+  "type": "pattern",
+  "description": "Confirmation dialog for destructive, irreversible actions. A specialized, fixed-size variant of the Modal pattern.",
+  "props": [
+    { "name": "title", "type": "string", "description": "Heading in the form [Action] + [Resource name], e.g. \"Delete process_data\"." },
+    { "name": "subtitle", "type": "string", "description": "The resource type, e.g. \"Reusable UI Template\"." },
+    { "name": "body", "type": "string", "description": "Plain-language explanation of the consequence of the action." },
+    { "name": "showReferences", "type": "boolean", "default": true, "description": "Whether the optional reference row (\"Referenced in N processes.\" + a \"View references\" link) is visible." }
+  ],
+  "size": {
+    "fixed": "S",
+    "width": 600,
+    "note": "Alerts have no size axis; they are fixed at S / 600px, so there is no Sizes section."
+  },
+  "container": {
+    "layout": { "direction": "vertical", "sizingH": "fixed", "sizingV": "hug", "itemSpacing": 32, "padding": 32 },
+    "width": 600,
+    "cornerRadius": 16,
+    "boxShadow": "2px 2px 24px 0 rgba(22, 52, 98, 0.12)",
+    "background": { "light": "#ffffff" }
+  },
+  "anatomy": [
+    { "name": "Container", "description": "Rounded 600px-wide surface holding all content; carries the drop shadow that separates it from the scrim. 32px padding, 32px gap, 16px corner radius." },
+    { "name": "Header", "description": "Centered vertical title + subtitle stack, 4px gap, fills width." },
+    { "name": "Title", "description": "Primary heading in the form [Action] + [Resource name]. Open Sans Bold 24px / 38px line-height, centered." },
+    { "name": "Subtitle", "description": "The resource type, e.g. 'Reusable UI Template'. Open Sans Regular 12px / 16px, centered." },
+    { "name": "CloseIcon", "description": "24x24 X icon absolutely positioned in the top-right corner (inset by container padding). Always rendered; dismisses (cancels) the alert." },
+    { "name": "Body", "description": "Left-aligned consequence paragraph explaining what the action will affect. Open Sans Regular 14px / 24px, neutrals-900." },
+    { "name": "ReferenceRow", "description": "Optional row (toggled via showReferences, default visible). Left: 'Referenced in N processes.' in bold (14px/24px, weight 700). Right: a 'View references' text link with a leading icon (ListMagnifyingGlass), Open Sans SemiBold 14px/24px, blue." },
+    { "name": "Actions", "description": "Horizontal button row at the bottom: fills width, hugs height, 16px gap, right-aligned (primaryAlign MAX). Cancel (secondary) on the left, the destructive primary action on the right." },
+    { "name": "SecondaryButton", "description": "Cancel / safe action, cornerRadius 8, Open Sans SemiBold 14px / 24px." },
+    { "name": "PrimaryButton", "description": "Destructive primary action, right-most, red fill, cornerRadius 8, Open Sans SemiBold 14px / 24px." }
+  ],
+  "typography": {
+    "title": { "fontFamily": "Open Sans", "fontSize": 24, "lineHeight": 38, "fontWeight": 700 },
+    "subtitle": { "fontFamily": "Open Sans", "fontSize": 12, "lineHeight": 16, "fontWeight": 400 },
+    "body": { "fontFamily": "Open Sans", "fontSize": 14, "lineHeight": 24, "fontWeight": 400 },
+    "referenceCount": { "fontFamily": "Open Sans", "fontSize": 14, "lineHeight": 24, "fontWeight": 700 },
+    "referenceLink": { "fontFamily": "Open Sans", "fontSize": 14, "lineHeight": 24, "fontWeight": 600 },
+    "buttons": { "fontFamily": "Open Sans", "fontSize": 14, "lineHeight": 24, "fontWeight": 600 }
+  },
+  "buttonPlacement": {
+    "order": "Cancel (secondary) on the left, destructive primary action (red) on the right.",
+    "gap": 16,
+    "rule": "The destructive action is always the red primary on the right; never place it on the left or style it as the safe choice. This is the intentional exception to the general 'no destructive action on the right' modal rule, because an Alert's entire purpose is the destructive confirmation."
+  },
+  "colors": {
+    "light": {
+      "container": { "fill": "#ffffff" },
+      "title": { "text": "#2a313a" },
+      "subtitle": { "text": "#64748b" },
+      "closeIcon": { "fill": "#64748b" },
+      "body": { "text": "#1d232c" },
+      "referenceCount": { "text": "#1d232c" },
+      "referenceLink": { "text": "#006bd8" },
+      "secondaryButton": { "fill": "#ffffff", "stroke": "#e3e8ed", "strokeWidth": 1, "text": "#006bd8" },
+      "primaryButton": { "fill": "#e62200", "text": "#ffffff" }
+    }
+  },
+  "tokens": {
+    "container.fill": "grays/50 (#ffffff)",
+    "container.cornerRadius": "radius/16 (16)",
+    "container.padding": "scale/32 (32)",
+    "container.itemSpacing": "scale/32 (32)",
+    "title.fill": "neutrals/800 (#2a313a)",
+    "title.fontSize": "fontsize/xl (24)",
+    "subtitle.fill": "neutrals/500 (#64748b)",
+    "subtitle.fontSize": "fontsize/s (12)",
+    "body.fill": "neutrals/900 (#1d232c)",
+    "body.fontSize": "fontsize/m (14)",
+    "referenceLink.fill": "blue/600 (#006bd8)",
+    "secondaryButton.stroke": "grays/200 (#e3e8ed)",
+    "secondaryButton.text": "blue/600 (#006bd8)",
+    "primaryButton.fill": "red/500 (#e62200)"
+  },
+  "guidelines": {
+    "do": [
+      "Name the specific resource in the title so the user knows exactly what they are about to affect.",
+      "Explain the consequence in the body in plain language, including what may break.",
+      "Use the red Danger primary button on the right, labelled with the destructive verb (\"Delete\", \"Discard\").",
+      "Keep Cancel as the safe default and always allow dismissal via Cancel, the X, or Escape."
+    ],
+    "dont": [
+      "Don't use an Alert for non-destructive confirmations; use a standard Modal for those.",
+      "Don't label the primary action ambiguously (\"OK\", \"Yes\"); name the actual destructive action.",
+      "Don't omit the consequence; the body must tell the user what deleting or discarding will affect.",
+      "Don't put the destructive action on the left or style it as the safe choice."
+    ],
+    "whenToUse": "Reserve alerts for destructive, irreversible actions such as deleting or discarding a resource, where the user must consciously confirm. For non-destructive confirmations, use a standard Modal instead.",
+    "titleFormat": "[Action] + [Resource name]. State the destructive verb and the exact resource, e.g. \"Delete process_data\".",
+    "subtitleFormat": "[Resource type]. Name what kind of thing the resource is, e.g. \"Reusable UI Template\".",
+    "considerations": [
+      "Set focus to Cancel (not the destructive action) when the alert opens, so an accidental Enter doesn't confirm.",
+      "Phrase the primary button as the destructive verb ('Delete', 'Discard'), never 'OK'.",
+      "Use the reference row when the resource is referenced elsewhere, so users understand the blast radius before confirming."
+    ]
+  },
+  "accessibility": {
+    "role": "alertdialog",
+    "aria": ["aria-modal=true", "aria-labelledby → title", "aria-describedby → body paragraph so the consequence is announced"],
+    "keyboard": [
+      "Escape cancels and dismisses the alert (never confirms the destructive action)",
+      "Tab/Shift+Tab cycle focus between Cancel, the destructive action, and the close icon, trapped inside the alert",
+      "Enter triggers the focused button; focus should default to Cancel, not the destructive action"
+    ]
+  },
+  "relatedComponents": ["button", "modals"],
+  "notes": "Pattern, not a base component (not in the component registry). A specialized fixed-size (S / 600px) variant of the Modal pattern. Only light-mode colors are specified in the sources; no dark/inverted variant is defined for the alert dialog. Button height/padding are not specified in the Figma spec. The reference row copy is 'Referenced in N processes.' (bold) with a 'View references' link (leading ListMagnifyingGlass icon)."
+}

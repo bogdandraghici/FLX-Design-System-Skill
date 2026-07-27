@@ -73,6 +73,7 @@ references/
     values-table   Tables: read-only/editing/error/warning, batch edit, bordered variant
 
   patterns/        Page-level patterns (how to compose a screen)
+    page-anatomy   How a whole page is composed: 4 page levels, the title-card + main-card spine, 3 render modes, 4 main-card variants, ground rules
     cards          Primary and Secondary cards, full-bleed table mode
     empty-states   No-content/no-results/canvas scenarios, 2 sizes, copy guidance
     modals         4 widths, anatomy, button placement, multi-step
@@ -92,4 +93,4 @@ Each spec is a pair: a `.json` file (authoritative exact values Claude reads) an
 
 ## Staying current
 
-These files are a snapshot of the FlowX design system website, taken at the commit recorded in `references/sync-state.json` (last synced **2026-07-13**). When the design system changes, the specs are re-synced from the site and this repo is updated — `git pull` to get the latest.
+These files are a snapshot of the FlowX design system website, taken at the commit recorded in `references/sync-state.json` (last synced **2026-07-27**). When the design system changes, the specs are re-synced from the site and this repo is updated — `git pull` to get the latest.

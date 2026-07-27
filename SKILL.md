@@ -1,6 +1,6 @@
 ---
 name: flowx-design-system
-description: Use when the user asks to build, style, or update any UI or design prototype using the FlowX Design System (FlowX DS, FlowX tokens, FlowX components), or to check, audit, or review existing pages/prototypes for compliance with FlowX styles and components. Supplies authoritative tokens for colors, typography, spacing, elevation, radius, and opacity, component specs for button, checkbox, radio, input-field, select-field, switch, segmented-button, tabs, dropdown-panel (tree), and values-table, plus pattern specs for cards, modals, typographic hierarchy, empty states, and alerts. Triggers on explicit mentions like "FlowX", "FlowX Design System", "FlowX DS", references to the FlowX component library, or requests like "does this follow the design system". Do NOT activate for generic UI work that doesn't mention FlowX.
+description: Use when the user asks to build, style, or update any UI or design prototype using the FlowX Design System (FlowX DS, FlowX tokens, FlowX components), or to check, audit, or review existing pages/prototypes for compliance with FlowX styles and components. Supplies authoritative tokens for colors, typography, spacing, elevation, radius, and opacity, component specs for button, checkbox, radio, input-field, select-field, switch, segmented-button, tabs, dropdown-panel (tree), and values-table, plus pattern specs for page anatomy, cards, modals, typographic hierarchy, empty states, and alerts. Triggers on explicit mentions like "FlowX", "FlowX Design System", "FlowX DS", references to the FlowX component library, or requests like "does this follow the design system". Do NOT activate for generic UI work that doesn't mention FlowX.
 ---
 
 # FlowX Design System
@@ -14,7 +14,7 @@ Authoritative specs for FlowX foundations and components. Every UI produced unde
 3. **Tokens, not raw values (when possible).** If the target framework supports CSS variables, expose tokens as `--flowx-*` custom properties (e.g., `--flowx-color-blue-500: #006bd8`) and reference them. When the target can't use variables, inline the hex/px values read from the JSON — never approximate.
 4. **Light mode is the default.** Only use the `inverted`/dark values from the JSON when the user asks for dark mode, inverted surfaces, or a dark-background context.
 5. **Use library components first.** If a needed UI element exists in `references/components/`, implement it exactly per its JSON spec (sizes, states, paddings, colors, radii, typography).
-6. **Patterns govern page structure.** Cards, modals, and text hierarchy have their own specs in `references/patterns/` — use them whenever a prototype has a page layout, a dialog, or headings/body text (which is almost always).
+6. **Patterns govern page structure.** Page anatomy, cards, modals, and text hierarchy have their own specs in `references/patterns/` — use them whenever a prototype has a page layout, a dialog, or headings/body text (which is almost always). Start a full page from `patterns/page-anatomy.json`.
 7. **Compose, don't invent.** For UI with no component or pattern spec (nav, toasts, breadcrumbs, tables other than values-table, etc.):
    - Compose from library primitives where possible (e.g., a form row = FlowX input-field + label; a toast's action = a FlowX tertiary button).
    - Style the surrounding container using foundation tokens only — FlowX colors, spacing scale, radius scale, elevation levels, typography presets.
@@ -56,6 +56,7 @@ Paths are relative to this SKILL.md.
 - `values-table.json` — tables (renamed from "Values Table" to "Tables" on the site): read-only/editing/error/warning states, inline editing with validation, batch edit, bordered standalone variant
 
 ### Patterns (`references/patterns/`)
+- `page-anatomy.json` — how a whole page is composed: four page levels (workspace/org, project, inside-a-resource canvas or regular) signalled by the nav frame, the title-card + main-card spine, three resource-list render modes (tables / nested cards / primary cards), the regular resource page layout, four main-card variants (plain / tabs / tabs+columns / split pane), and the ground rules
 - `cards.json` — Primary cards (white surface + shadow on the grey app background, structure a page) and Secondary cards (bordered, group content inside a Primary, sizes L/M/S), full-bleed table mode, in-card typography
 - `modals.json` — 4 widths (XS 400 / S 600 / M 800 / L 80% screen), header/content/footer anatomy, button placement rules, multi-step behavior, light + dark
 - `typography-hierarchy.json` — named text roles (Page Title, Section Title, Subsection Title, Description), spacing between levels, section-card composition rules
@@ -67,12 +68,13 @@ If the user asks for something not in this index (nav bar, toast, tooltip, accor
 ## Building a screen or prototype
 
 For any full page or screen, start from the patterns, not the components:
-1. App background is neutrals-50 (`#f7f8f9`); structure the page with **Primary cards** and group content inside them with **Secondary cards** (`patterns/cards.json`).
-2. Set headings and body text from the **typography hierarchy** roles (`patterns/typography-hierarchy.json`) — never improvise font sizes.
-3. Dialogs follow `patterns/modals.json`, including its button placement rules.
-4. When a section or page has no content yet, use the **empty state** model (`patterns/empty-states.json`) centered inside its card.
-5. For destructive, irreversible confirmations (delete/discard), use the **alert** model (`patterns/alerts.json`) rather than a plain modal — red primary action on the right, safe Cancel on the left.
-5. Fill in the interactive elements from `references/components/`.
+1. Lay out the page from the **Page Anatomy** pattern (`patterns/page-anatomy.json`): pick the page level (workspace/org, project, or inside-a-resource) and its nav frame, build the title-card + main-card spine, choose a resource-list render mode (tables / nested cards / primary cards) or a main-card variant (plain / tabs / tabs+columns / split pane), and follow its ground rules.
+2. App background is neutrals-50 (`#f7f8f9`); structure the page with **Primary cards** and group content inside them with **Secondary cards** (`patterns/cards.json`).
+3. Set headings and body text from the **typography hierarchy** roles (`patterns/typography-hierarchy.json`) — never improvise font sizes.
+4. Dialogs follow `patterns/modals.json`, including its button placement rules.
+5. When a section or page has no content yet, use the **empty state** model (`patterns/empty-states.json`) centered inside its card.
+6. For destructive, irreversible confirmations (delete/discard), use the **alert** model (`patterns/alerts.json`) rather than a plain modal — red primary action on the right, safe Cancel on the left.
+7. Fill in the interactive elements from `references/components/`.
 
 ## Auditing an existing prototype
 

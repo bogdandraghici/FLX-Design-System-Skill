@@ -1,0 +1,104 @@
+{
+  "name": "Page Anatomy",
+  "slug": "page-anatomy",
+  "description": "How FlowX platform pages are put together: four page levels signalled by the navigation frame, a shared title-card + main-card spine, three resource-list render modes, the regular resource page layout, and four main-card variants. This is a structural/composition pattern; assemble new pages from these named parts instead of inventing a layout. The wireframes on the page are illustrative skeletons, not pixel specs; for exact surfaces use cards.json, values-table.json, tabs.json, and empty-states.json.",
+  "shared": {
+    "fontFamily": "var(--font-flowx)",
+    "pageBackground": { "token": "--flowx-neutrals-50", "hex": "#f7f8f9", "note": "grey app background the cards sit on (see patterns/cards.json)" },
+    "spine": "Nearly every page is a title card that names the resource, followed by the content below it (usually a single main card). Deliberate exceptions like canvas editors are the only pages without this spine.",
+    "composesFrom": ["patterns/cards.json (Primary + Secondary cards)", "components/values-table.json (tables)", "components/tabs.json (tab bars)", "components/button.json (footer + inline actions)", "patterns/empty-states.json (empty lists and result panes)"]
+  },
+  "levels": {
+    "note": "Every screen sits at one of four levels, and the navigation frame signals which one. The higher the level, the more navigation is present; drilling into a resource replaces the nav with a back breadcrumb.",
+    "workspaceOrg": {
+      "label": "Workspace / Org level",
+      "navFrame": "No top command bar. A left sidebar carries the brand, the workspace or organization switcher, the labelled nav, and the user profile pinned at the bottom.",
+      "content": "A system alert banner may sit above the content, then the page body.",
+      "realExamples": ["Projects", "Platform Status", "Audit Logs", "Usage Stats", "Branding"]
+    },
+    "project": {
+      "label": "Project level",
+      "navFrame": "The top command bar appears together with the full labelled left nav.",
+      "content": "A page title card and the resource list.",
+      "realExamples": ["Processes", "Data Sources", "Views", "UI Flows"]
+    },
+    "insideResourceCanvas": {
+      "label": "Inside a resource, canvas",
+      "navFrame": "A subheader with a back breadcrumb appears; the nav collapses to an icon rail.",
+      "content": "A full-width canvas with side panels.",
+      "realExamples": ["Process Designer", "UI Designer", "Data Model"]
+    },
+    "insideResourceRegular": {
+      "label": "Inside a resource, regular page",
+      "navFrame": "A subheader with a back breadcrumb; the breadcrumb can run two to four levels deep and is the way back out. The nav is hidden.",
+      "content": "The regular resource page body: title card plus main card.",
+      "realExamples": ["REST data source detail", "connection settings"]
+    }
+  },
+  "renderModes": {
+    "note": "A resource list can be laid out three ways, whatever it contains. The layout is a treatment, not a new page: the title card and the spine stay the same.",
+    "tables": {
+      "label": "Tables",
+      "description": "One or more tables inside the main card, each under its own sub-header.",
+      "whenToUse": "The default layout for entity lists.",
+      "uses": "components/values-table.json"
+    },
+    "nestedCards": {
+      "label": "Nested cards",
+      "description": "A grid of secondary cards inside the main card, one per entity, each with its own inline actions.",
+      "uses": "patterns/cards.json (Secondary cards)"
+    },
+    "primaryCards": {
+      "label": "Primary cards",
+      "description": "No main card. Each entity is its own primary card, stacked directly under the title card.",
+      "uses": "patterns/cards.json (Primary cards)"
+    }
+  },
+  "regularResourcePage": {
+    "note": "The regular resource page has one spine: a title card that names the resource, followed by the content below it.",
+    "mainOption": {
+      "label": "Title card + Main card",
+      "description": "One title card, one main card holding all the content.",
+      "whenToUse": "The default for records and settings."
+    },
+    "cardGridVariant": {
+      "label": "Title card + multiple small cards",
+      "description": "The main card is replaced by a grid of small cards, one per entity or capability, each with its own inline actions. Used when the content is a set of independent peers.",
+      "realExamples": ["Model Providers", "capability defaults"]
+    }
+  },
+  "mainCardVariants": {
+    "note": "The main card comes in four variants, chosen by how much the resource carries. When a record has more than a couple of fields, its one or two defining fields stay in the top card, which becomes a config card, and everything else moves into tabs.",
+    "withoutTabs": {
+      "label": "Without tabs",
+      "description": "A single group of fields with footer actions (Reset / Save bottom-right).",
+      "whenToUse": "Simple one-facet resources, such as a connection form."
+    },
+    "withTabs": {
+      "label": "With tabs",
+      "description": "The top card becomes a config card that keeps the record's one or two defining fields; a tab bar in the main card splits the rest into facets, each tab holding its own content (such as a table with its own Add action)."
+    },
+    "withTabsAndColumns": {
+      "label": "With tabs and columns",
+      "description": "Inside a tab, peer sections sit in two columns when they have no natural order. A section header can carry an enable toggle that gates the whole section, and a section toggled off collapses to its header."
+    },
+    "withSplitPane": {
+      "label": "With a split pane",
+      "description": "For operation editors the tab content splits in two: inputs on the left, live output on the right (such as a code preview, a results console, or a query builder).",
+      "realExamples": ["SOAP operations", "database find operations"]
+    }
+  },
+  "groundRules": [
+    { "title": "Title card, then main card", "rule": "The spine of nearly every page. The few exceptions, like canvas editors, are deliberate." },
+    { "title": "Identity first, details in tabs", "rule": "The one or two defining fields sit in the top config card. Everything else goes into a tab." },
+    { "title": "Commit in the footer, act in the section", "rule": "Reset and Save sit bottom-right of the main card. Local actions like Add or Test sit next to what they change. Nothing floats in between." },
+    { "title": "Stack when order matters, columns when it doesn't", "rule": "Sections that depend on each other read top to bottom. Peers with no natural sequence can share a row." },
+    { "title": "Show state before detail", "rule": "Enable toggles gate sections, status pills mark rows. State is visible before anything is opened." },
+    { "title": "No page renders blank", "rule": "Every list ships an empty state and every result pane says what to do first (see patterns/empty-states.json)." }
+  ],
+  "related": ["cards", "values-table", "tabs", "empty-states"],
+  "themes": {
+    "light": "documented (all wireframes render light)",
+    "dark": "not documented; the pattern page keeps its wireframes light"
+  }
+}

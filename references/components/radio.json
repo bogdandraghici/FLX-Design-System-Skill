@@ -180,15 +180,15 @@
       },
       "disabled": {
         "unselected": {
-          "containerBg": "#e3e8ed",
+          "containerBg": "#f7f8f9",
           "border": "#e3e8ed",
           "radioStroke": "#64748b",
           "value": "#64748b"
         },
         "selected": {
-          "containerBg": "#e3e8ed",
-          "border": "#64748b",
-          "radioFill": "#64748b",
+          "containerBg": "#f7f8f9",
+          "border": "#cbd1db",
+          "radioFill": "#8390a2",
           "value": "#64748b"
         }
       }
@@ -244,5 +244,8 @@
       }
     },
     "note": "In the error state the radio circle stroke and value text keep their default colors; only the container border, container fill, and selected radio fill turn red. Radio's unselected error border is red-400 #eb4e33 (checkbox uses red-500 #e62200 for the same state) \u2014 this difference is intentional per the design system site."
-  }
+  },
+  "decisionLog": [
+    { "date": "2026-09-15", "decision": "Disabled bordered radios use a neutrals-50 fill with a neutrals-100 border (neutrals-200 when selected), and the selected dot drops from neutrals-500 to neutrals-400.", "reasoning": "Disabled controls on a neutrals-100 fill read almost as heavy as enabled ones. Stepping the fill down to neutrals-50 with a neutrals-100 hairline lets active controls lead while the disabled shape stays visible. Text colors are unchanged so legibility is unaffected." }
+  ]
 }

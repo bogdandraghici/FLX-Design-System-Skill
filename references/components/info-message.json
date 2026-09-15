@@ -1,0 +1,140 @@
+{
+  "name": "Info message",
+  "slug": "info-message",
+  "family": "inline-message",
+  "sibling": "warning-message",
+  "status": "beta",
+  "lastUpdated": "2026-09-08",
+  "description": "Persistent guidance beside the settings or content it explains.",
+  "sourceBasis": "Source-based recreation of the Designer app's shared idea helper box (shared/components/idea-helper-box/idea-helper-box.component.ts), reviewed against Designer checkout 855605bdb7 on 2026-09-08. Not a Figma extraction; there is no figmaLink.",
+  "props": [
+    { "name": "content", "type": "projected content", "description": "Plain text or caller-authored markup. The base wrapper uses 12px / 18px regular text; nested elements can override it." },
+    { "name": "icon", "type": "optional projected [icon]", "default": "outlined yellow lightbulb", "description": "The component exposes an icon slot, but no custom icon was found in the reviewed Info call sites. Icon size otherwise inherits from its context." },
+    { "name": "placement", "type": "caller layout", "description": "Callers set full, half, or content width and surrounding margins. These are layout choices, not size variants." },
+    { "name": "width", "type": "enum", "options": ["fill", "fit"], "default": "fill", "description": "Rendered as width 100% (fill) or fit-content (fit), always with max-width 100% and min-width 0." }
+  ],
+  "documentationPreviewControls": [
+    { "name": "content", "options": ["Plain", "Action", "Emphasis"], "default": "Plain" },
+    { "name": "message width", "options": ["Fill", "Fit"], "default": "Fill" },
+    { "name": "preview width", "options": ["Wide", "Narrow"], "default": "Wide", "note": "Narrow caps the documentation canvas at 320px. It changes only the canvas, not the component." }
+  ],
+  "variations": {
+    "content": [
+      { "name": "Plain", "description": "Body text only. Default preview copy: \"Provider and Webhook Behavior are a one time selection. Once saved these cannot be changed.\"" },
+      { "name": "Action", "description": "Body with a short inline action (a button or link) in Blue 500, inheriting the body font. Example: \"Email Triggers can be activated from [Manage Triggers] in Runtime\"." },
+      { "name": "Emphasis", "description": "Body with selective bold on the essential words. Example: \"Scope is a one time configuration. Once saved it **cannot be modified**.\"" },
+      { "name": "Short", "description": "Short single-line body used for the width examples: \"Files are combined in the order shown (min. two files)\"." }
+    ],
+    "width": [
+      { "name": "Fill", "description": "Fills the containing column (width 100%)." },
+      { "name": "Fit", "description": "Fits the content (fit-content), capped at the container width (max-width 100%)." }
+    ],
+    "title": "None. There is no title slot; the message is a single text block.",
+    "dismiss": "None. The baseline has no timer or close control.",
+    "observedAppVariations": [
+      { "name": "Shared Info tip", "difference": "The inspected app still uses a 4px radius; the design-system reference now specifies 8px. Neutral 50 fill, no border, 8px padding and gap. Neutral 700 text at 12px / 18px, weight 400. Top-aligned content with a 22px-high lightbulb slot. The icon inherits its size; the plain webhook example inherits 16px.", "source": "shared/components/idea-helper-box/idea-helper-box.component.ts:9" },
+      { "name": "Inline link", "difference": "Message event configuration and webhook details project a Blue 500 link into the same 12px body. Container styling stays unchanged.", "source": "modules/process/components/message-event-config/message-event-config.component.html:76" },
+      { "name": "Muted body", "difference": "Invite User projects a Neutral 500 span, overriding the shared Neutral 700 body. The wrapper, spacing and icon stay the same.", "source": "modules/workspaces/shared/users/invite-user-modal/invite-user-modal.component.html:173" },
+      { "name": "Larger content and button", "difference": "Email settings puts text-sm on the host and a nested content row, producing 14px / 20px content and a 14px inherited icon. It supplies a Manage Triggers button. This is a caller override, not a larger Info variant.", "source": "modules/integration-designer/components/system-details-page/email-type-system-details/email-type-system-details.component.html:12" },
+      { "name": "Width and visibility", "difference": "Message events use half-width hosts; workflow input parameters use content width with max-width: 100%; user dialogs hide the helper when there is no content. These do not change the shared inner treatment.", "source": "modules/integration-designer/workflow-integration/components/workflow-data-model/workflow-data-model.component.html:55" },
+      { "name": "Separate settings tips", "difference": "MS Graph and database settings also build lightbulb tips directly: 12px / 16px Neutral 500 text, centered icon alignment, 8px padding and 4px radius. Several include bold phrases. These do not use the shared idea helper box.", "source": "modules/integration-designer/components/system-details-page/ms-graph-system-details/ms-graph-system-details.component.html:97" },
+      { "name": "React file-combination tip", "difference": "12px / 18px Neutral 700 text and 4px radius, with a centered 16px lightbulb using an 18px line box. The shared Angular helper uses a 22px icon slot and top alignment.", "source": "modules/integration-designer/workflow-integration/react/components/nodes/combine-files-node/CombineFilesNode.tsx:232" },
+      { "name": "Other lightbulb treatments", "difference": "UI Flow uses 6px corners and Tailwind Gray 500 text; chat display guidance has no radius class. Metadata tips use 6px corners and Neutral 500. Reply-trigger guidance uses 8px corners, Neutral 600 and 18px line height. A copy-resource tip uses a 12px inline icon instead of the flex layout.", "source": "modules/ui-flow/components/ui-flow-modal/ui-flow-modal.component.html:97" },
+      { "name": "Dark document-processing tip", "difference": "A separate processing notice uses Neutral 700 fill, Neutral 200 text, 8px radius and centered alignment. It is not a dark variant of the shared Info tip.", "source": "modules/ai/modules/command-center-documents/components/documents-list/documents-list.component.html:106" }
+    ],
+    "note": "Observed app variations are caller differences in Designer, not a supported variant API. Only the documented baseline is the design-system reference."
+  },
+  "states": [],
+  "statesNote": "Static message with no interactive states. An inline action inside the body underlines on hover and shows a 2px focus-visible outline with 2px offset.",
+  "sizes": [],
+  "sizesNote": "No size axis. The site shows a single style reference; container width follows the caller and is not a size variant.",
+  "anatomy": [
+    { "name": "Container", "description": "Gray surface with 8px padding, 8px corners, and no border. Horizontal flex row, children aligned to the top (flex-start), 8px gap." },
+    { "name": "IconSlot", "description": "Fixed 16px wide, 22px high alignment slot; flex, centered both ways, does not shrink." },
+    { "name": "Icon", "description": "Outlined yellow lightbulb (Phosphor Lightbulb, regular weight), 16x16, aria-hidden." },
+    { "name": "Body", "description": "Explanatory text at 12px / 18px. Supports inline links or buttons and selective bold emphasis. Text wraps without truncation (overflow-wrap anywhere, min-width 0); the icon stays at the top in its fixed alignment slot." }
+  ],
+  "dimensions": {
+    "container": { "paddingTop": 8, "paddingRight": 8, "paddingBottom": 8, "paddingLeft": 8, "gap": 8, "cornerRadius": 8, "borderWidth": 0, "direction": "horizontal", "alignItems": "flex-start", "widthFill": "100%", "widthFit": "fit-content", "maxWidth": "100%", "minWidth": 0 },
+    "iconSlot": { "width": 16, "height": 22 },
+    "icon": { "width": 16, "height": 16 }
+  },
+  "typography": {
+    "fontFamily": "Open Sans",
+    "body": { "fontSize": 12, "lineHeight": 18, "fontWeight": 400 },
+    "action": { "inherits": "body", "hover": "underline" },
+    "emphasis": { "element": "strong" }
+  },
+  "colors": {
+    "light": {
+      "container": { "fill": "#f7f8f9", "fillToken": "--flowx-neutrals-50", "border": null },
+      "icon": { "color": "#feb913", "colorToken": "--flowx-yellow-500" },
+      "title": null,
+      "body": { "text": "#475263", "textToken": "--flowx-neutrals-700" },
+      "action": { "text": "#006bd8", "textToken": "--flowx-blue-500" }
+    },
+    "dark": {
+      "sameAsLight": true,
+      "container": { "fill": "#f7f8f9", "fillToken": "--flowx-neutrals-50", "border": null },
+      "icon": { "color": "#feb913", "colorToken": "--flowx-yellow-500" },
+      "title": null,
+      "body": { "text": "#475263", "textToken": "--flowx-neutrals-700" },
+      "action": { "text": "#006bd8", "textToken": "--flowx-blue-500" }
+    },
+    "documentationSurface": { "fill": "#ffffff", "fillToken": "--flowx-grays-50", "note": "The site previews the Info message on a white surface so the gray message background stays visible." }
+  },
+  "placement": {
+    "relativeTo": "Beside the settings or content it explains; keep it visible while its condition applies.",
+    "width": "Fill the column or fit the content, without exceeding the available width. Callers choose full, half, or content width and the surrounding margins; these are layout choices, not size variants.",
+    "notForFieldHelp": "Keep field-specific instructions and validation with their control. Use a callout for context affecting a section or task.",
+    "observed": "Message events use half-width hosts; workflow input parameters use content width with max-width 100%; user dialogs hide the helper when there is no content."
+  },
+  "guidelines": {
+    "useCase": [
+      { "title": "Explain a setting", "description": "Clarify how a setting works or what happens when it changes.", "example": "Plain" }
+    ],
+    "do": [
+      { "title": "Link to the relevant destination", "description": "Use a short, keyboard-accessible inline action to open related settings.", "example": "Action" },
+      { "title": "Emphasize only the essential words", "description": "Bold key terms or consequences. Keep 12px / 18px text and allow wrapping.", "example": "Emphasis" },
+      { "title": "Choose width to suit the context", "description": "Fill the column or fit the content, without exceeding the available width.", "example": "Width" }
+    ],
+    "dont": [],
+    "sharedBase": {
+      "note": "Defined on the shared inline-message base spec. The Info message page itself renders only the items above.",
+      "do": [
+        { "title": "Keep context beside the affected content", "description": "Place an Info tip beside the settings it explains and a warning above the content affected by the consequence." },
+        { "title": "Keep essential information visible", "description": "Leave the message available while its condition applies. A brief toast cannot replace persistent guidance." }
+      ],
+      "dont": [
+        { "title": "Do not infer one universal style", "description": "The shared Info tip and the page-authored warning have different spacing and typography. Similar-looking call sites also contain local variations." },
+        { "title": "Do not promote field help into a banner", "description": "Keep field-specific instructions and validation with their control. Use a callout for context affecting a section or task." }
+      ]
+    }
+  },
+  "considerations": [
+    "The underlying idea helper also implements a Warning type. That borderless orange treatment is separate from this Info message reference.",
+    "When projecting links or nested markup, check inherited text and icon sizes. Email settings overrides both with larger text.",
+    "Use a contrasting preview surface so the gray message background remains visible.",
+    "The baseline has no timer or close control."
+  ],
+  "accessibility": {
+    "role": "Static context needs no live role. Announce dynamic feedback according to urgency.",
+    "keyboard": ["Tab: keep interactive links and controls in the normal reading order.", "Focus: do not move focus merely because a result appears."],
+    "aria": ["aria-hidden: decorative icons are hidden; the text carries the meaning.", "aria-describedby: associate a message with an affected control when appropriate.", "aria-live: the source template declares no live region. If an important result changes dynamically, its caller must provide appropriate announcement behavior."]
+  },
+  "decisionLog": [
+    { "date": "2026-09-08", "decision": "Use an 8px radius for the Info message.", "reasoning": "Design direction confirmed by the user; replaces the 4px radius observed in the current app implementation." }
+  ],
+  "knownExceptions": [],
+  "relatedComponents": ["warning-message", "toast", "input-field", "button"],
+  "gaps": [
+    "No dark-mode treatment is defined. The rendered component uses the same palette tokens in both themes and globals.css does not redefine --flowx palette variables under .dark, so colors.dark simply repeats colors.light.",
+    "No title element exists (no title slot), so title typography and color are undefined.",
+    "The bold emphasis is a plain <strong> element; no numeric font weight is specified for it in the sources.",
+    "The inline action's corner radius is set with the Tailwind class rounded-sm and its focus outline color is the browser/theme default; neither pixel radius nor outline color is stated in the sources.",
+    "Hover and pressed states for the action are limited to an underline; no hover text color is defined.",
+    "Icon color for a custom projected icon is not defined; only the default lightbulb color (yellow-500) is specified.",
+    "No Figma source exists for this component; values come from the Designer app source and the site's rendered recreation.",
+    "The spec and the rendered component agree on every value; the only documented deviation is the 8px radius versus the 4px radius still in the inspected app (see decisionLog)."
+  ]
+}

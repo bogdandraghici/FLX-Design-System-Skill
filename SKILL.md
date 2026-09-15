@@ -1,6 +1,6 @@
 ---
 name: flowx-design-system
-description: Use when the user asks to build, style, or update any UI or design prototype using the FlowX Design System (FlowX DS, FlowX tokens, FlowX components), or to check, audit, or review existing pages/prototypes for compliance with FlowX styles and components. Supplies authoritative tokens for colors, typography, spacing, elevation, radius, and opacity, component specs for button, checkbox, radio, input-field, select-field, switch, segmented-button, tabs, dropdown-panel (tree), and values-table, plus pattern specs for page anatomy, cards, modals, typographic hierarchy, empty states, and alerts. Triggers on explicit mentions like "FlowX", "FlowX Design System", "FlowX DS", references to the FlowX component library, or requests like "does this follow the design system". Do NOT activate for generic UI work that doesn't mention FlowX.
+description: Use when the user asks to build, style, or update any UI or design prototype using the FlowX Design System (FlowX DS, FlowX tokens, FlowX components), or to check, audit, or review existing pages/prototypes for compliance with FlowX styles and components. Supplies authoritative tokens for colors, typography, spacing, elevation, radius, and opacity, component specs for button, checkbox, radio, input-field, select-field, switch, segmented-button, tabs, dropdown-panel (tree), values-table, status-pills, toast, info-message, and warning-message, plus pattern specs for page anatomy, cards, modals, typographic hierarchy, empty states, alerts, and menus. Triggers on explicit mentions like "FlowX", "FlowX Design System", "FlowX DS", references to the FlowX component library, or requests like "does this follow the design system". Do NOT activate for generic UI work that doesn't mention FlowX.
 ---
 
 # FlowX Design System
@@ -14,9 +14,9 @@ Authoritative specs for FlowX foundations and components. Every UI produced unde
 3. **Tokens, not raw values (when possible).** If the target framework supports CSS variables, expose tokens as `--flowx-*` custom properties (e.g., `--flowx-color-blue-500: #006bd8`) and reference them. When the target can't use variables, inline the hex/px values read from the JSON — never approximate.
 4. **Light mode is the default.** Only use the `inverted`/dark values from the JSON when the user asks for dark mode, inverted surfaces, or a dark-background context.
 5. **Use library components first.** If a needed UI element exists in `references/components/`, implement it exactly per its JSON spec (sizes, states, paddings, colors, radii, typography).
-6. **Patterns govern page structure.** Page anatomy, cards, modals, and text hierarchy have their own specs in `references/patterns/` — use them whenever a prototype has a page layout, a dialog, or headings/body text (which is almost always). Start a full page from `patterns/page-anatomy.json`.
-7. **Compose, don't invent.** For UI with no component or pattern spec (nav, toasts, breadcrumbs, tables other than values-table, etc.):
-   - Compose from library primitives where possible (e.g., a form row = FlowX input-field + label; a toast's action = a FlowX tertiary button).
+6. **Patterns govern page structure.** Page anatomy, cards, modals, menus, and text hierarchy have their own specs in `references/patterns/` — use them whenever a prototype has a page layout, a dialog, a contextual menu, or headings/body text (which is almost always). Start a full page from `patterns/page-anatomy.json`.
+7. **Compose, don't invent.** For UI with no component or pattern spec (nav, breadcrumbs, tooltips, tables other than values-table, etc.):
+   - Compose from library primitives where possible (e.g., a form row = FlowX input-field + label; a banner's action = a FlowX tertiary button).
    - Style the surrounding container using foundation tokens only — FlowX colors, spacing scale, radius scale, elevation levels, typography presets.
    - Never import or style with an external design language (Material, Bootstrap, shadcn defaults, etc.).
 8. **Open Sans** is the primary typeface; **JetBrains Mono** is the only monospace. Always set one of these when emitting text styles. For UI icons, use Phosphor Icons (the FlowX icon library) — do not mix in other icon sets.
@@ -26,7 +26,7 @@ Authoritative specs for FlowX foundations and components. Every UI produced unde
 1. **Identify** which FlowX patterns, components, and foundations are needed.
 2. **Read** the relevant JSON files with the Read tool (do NOT read the `.md` twins unless the JSON is ambiguous):
    - Foundations: always read the JSON for every token category you'll touch (colors, spacing, radius, typography, elevation, opacity).
-   - Patterns: read `cards.json` and `typography-hierarchy.json` for any full page/screen; `modals.json` for any dialog.
+   - Patterns: read `cards.json` and `typography-hierarchy.json` for any full page/screen; `modals.json` for any dialog; `menus.json` for any dropdown or context menu.
    - Components: read the JSON for every library component you'll use.
 3. **Produce** the UI, referencing exact token names/values. When choosing a color role, prefer semantic tokens (from `colors.json` → `semantic`) over raw palette steps when one fits.
 4. **Verify** before finishing: every color, spacing value, radius, shadow, and font size you emitted can be traced back to a token or spec in the files you read.
@@ -36,7 +36,7 @@ Authoritative specs for FlowX foundations and components. Every UI produced unde
 Paths are relative to this SKILL.md.
 
 ### Foundations (`references/foundations/`)
-- `colors.json` — 6 palettes (blue, yellow, green, orange, red, neutrals) × 10 steps, semantic tokens, dark-mode overrides
+- `colors.json` — 6 palettes (blue, yellow, green, orange, red, neutrals) × 10 steps, semantic tokens, dark-mode overrides, plus the proposed status-color map (Neutral/Info/Success/Warning/Danger × light/dark surface) shared by status pills and status cells
 - `typography.json` — Open Sans + JetBrains Mono, sizes, weights, line-heights, text presets
 - `spacing.json` — 20-step scale (0–160px)
 - `radius.json` — 11-step scale (2–120px)
@@ -54,6 +54,10 @@ Paths are relative to this SKILL.md.
 - `tabs.json` — active/inactive × 2 sizes, optional icon + counter
 - `dropdown-panel.json` — multi-select/single × 2 sizes, search + nesting (called "Tree" in some site URLs)
 - `values-table.json` — tables (renamed from "Values Table" to "Tables" on the site): read-only/editing/error/warning states, inline editing with validation, batch edit, bordered standalone variant
+- `status-pills.json` — (beta proposal) read-only state label: 5 tones (Neutral/Info/Success/Warning/Danger) × light/dark surface, 2 sizes (Small 20 / Medium 24), optional 12px icon, paired foreground/background palette tokens
+- `toast.json` — (beta) brief feedback message: 4 variants (Success/Warning/Info/Error) with solid fills and white text, title + optional message, close button, bottom-center stacking, auto-dismiss timing and entry/exit motion (alias: toasts)
+- `info-message.json` — (beta, inline message family) explanatory message beside the settings it explains: neutrals-50 surface, no border, yellow lightbulb icon, 12/18 body, optional blue inline action; Fill/Fit widths
+- `warning-message.json` — (beta, inline message family) consequence banner placed above the affected content: orange-50 surface with orange-100 border, orange warning icon, 12/16 body; no action, no title, no dismiss
 
 ### Patterns (`references/patterns/`)
 - `page-anatomy.json` — how a whole page is composed: four page levels (workspace/org, project, inside-a-resource canvas or regular) signalled by the nav frame, the title-card + main-card spine, three resource-list render modes (tables / nested cards / primary cards), the regular resource page layout, four main-card variants (plain / tabs / tabs+columns / split pane), and the ground rules
@@ -62,8 +66,9 @@ Paths are relative to this SKILL.md.
 - `typography-hierarchy.json` — named text roles (Page Title, Section Title, Subsection Title, Description), spacing between levels, section-card composition rules
 - `empty-states.json` — the no-content model: centered stack of a 24px icon, bold title, caption, and optional secondary-button CTA, optionally in a bordered container; Medium (full) vs Small (subtitle only) sizes
 - `alerts.json` — destructive-confirmation dialog (fixed S / 600px variant of the modal): centered title/subtitle, left-aligned consequence body, optional reference row, and a red primary destructive action on the right beside a safe Cancel
+- `menus.json` — contextual and dropdown menus: panel surface, item types and states (default/hover/active/disabled/destructive), dividers and section headers, typography, light + dark, and how it relates to the dropdown-panel component
 
-If the user asks for something not in this index (nav bar, toast, tooltip, accordion, stepper, breadcrumb, etc.), fall back to rule 7: **compose from primitives + foundation tokens**.
+If the user asks for something not in this index (nav bar, tooltip, accordion, stepper, breadcrumb, etc.), fall back to rule 7: **compose from primitives + foundation tokens**.
 
 ## Building a screen or prototype
 
@@ -75,6 +80,7 @@ For any full page or screen, start from the patterns, not the components:
 5. When a section or page has no content yet, use the **empty state** model (`patterns/empty-states.json`) centered inside its card.
 6. For destructive, irreversible confirmations (delete/discard), use the **alert** model (`patterns/alerts.json`) rather than a plain modal — red primary action on the right, safe Cancel on the left.
 7. Fill in the interactive elements from `references/components/`.
+8. Show resource or operation state with **status pills** (`components/status-pills.json`) using the shared status-color map; never invent a new status color. Give feedback about a completed action with a **toast** (`components/toast.json`), and explain or warn inline next to a field or section with an **info** or **warning message** (`components/info-message.json`, `components/warning-message.json`). Contextual actions on a row, card, or trigger button open a **menu** (`patterns/menus.json`).
 
 ## Auditing an existing prototype
 

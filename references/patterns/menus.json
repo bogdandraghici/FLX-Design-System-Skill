@@ -1,0 +1,222 @@
+{
+  "name": "Menus",
+  "slug": "menus",
+  "type": "pattern",
+  "status": "beta",
+  "lastUpdated": "2026-09-10",
+  "description": "Actions for a resource, page, or canvas selection, revealed through a kebab button, a dropdown button, or a context menu. A floating white panel of command rows with optional icons, shortcuts, dividers, danger rows, checkbox rows, and one-level submenus.",
+  "source": "Site pattern page /patterns/menus (spec src/lib/components-data/menus.ts, rendered by src/components/docs/menus/flowx-menu.tsx + menus.css). Based on the FlowX DS Gap Audit of September 4, 2026, recommendation #4, reviewed against the Designer checkout 01326458d3 on September 10, 2026. Palette mappings are code-derived equivalents, not verified Figma variable bindings; no Figma component link exists.",
+  "menuTypes": [
+    { "name": "Kebab", "density": "Standard", "useCase": "Keep secondary resource actions close to their row.", "trigger": "A named kebab icon button (DotsThreeVertical, 20px, bold) beside the resource. Opening a row menu must not select or navigate the row.", "example": ["Copy UUID (CopySimple)", "Details (PencilSimple)", "Audit Logs (ClockCounterClockwise)", "divider", "Delete (TrashSimple, danger)"] },
+    { "name": "Dropdown", "density": "Standard", "useCase": "Group commands under a visible action label.", "trigger": "A labelled button with a trailing CaretDown (16px), for example \"Manage resources\".", "example": ["Import (UploadSimple) > from CSV, from ZIP", "Export (DownloadSimple) > to CSV, to ZIP"] },
+    { "name": "Context", "density": "Compact", "useCase": "Offer commands for the current canvas selection.", "trigger": "Right-click, Shift+F10, or the ContextMenu key on the selected canvas object. A visible \"Actions\" button opens the same commands below the button for touch and keyboard users. Icons are not shown in the context examples (the playground disables the icons toggle for Context).", "example": ["Copy (shortcut ⌘C / Ctrl+C)", "Paste (shortcut ⌘V / Ctrl+V, disabled)", "divider", "Apply To > Contact details (checkbox, checked), Review application (checkbox, unchecked)", "divider", "Delete (shortcut ⌫ / Delete)"], "platformHotkeys": { "macOS": "⌘C, ⌘V, ⌫", "Windows": "Ctrl+C, Ctrl+V, Delete" } }
+  ],
+  "densities": {
+    "Standard": { "useFor": "Resource and page actions (kebab and dropdown menus).", "label": "14px / 20px, weight 600", "rowPitch": 32, "rowCornerRadius": 6, "previewWidth": 224, "previewWidthNote": "Illustrative, not a fixed width token; width follows the longest label and its trailing content." },
+    "Compact": { "useFor": "Documents the existing canvas context menu.", "label": "12px / 16px, weight 400", "rowPitch": 24, "rowCornerRadius": 4, "previewWidth": 200, "previewWidthNote": "Context menus start at a 200px minimum width." }
+  },
+  "props": [
+    { "name": "label", "type": "string", "description": "A concise action or destination, such as Details, Copy UUID, or Export. A submenu label names the group." },
+    { "name": "icon / iconName", "type": "string", "description": "Optional leading icon. Resource menus use icon; the context wrapper supports iconName." },
+    { "name": "command", "type": "function", "description": "Runs an action for the current resource. Ordinary actions close the menu; checkbox actions can keep it open." },
+    { "name": "disabled", "type": "boolean", "default": false, "description": "Keeps an unavailable action visible and prevents activation. Explain the prerequisite in the surrounding UI." },
+    { "name": "visible", "type": "boolean", "default": true, "description": "Hides actions that do not apply to the current resource or permissions. Remove empty groups and unused dividers as well." },
+    { "name": "separator", "type": "boolean", "default": false, "description": "A non-interactive divider between meaningful groups. Do not add one between every item." },
+    { "name": "items", "type": "MenuItem[]", "description": "Child actions in a submenu. The parent opens the group; it does not also run a command." },
+    { "name": "shortcut / shortcutIcon", "type": "string", "description": "Context-menu hints for shortcuts the application actually supports. Use the correct platform notation." },
+    { "name": "subheader", "type": "boolean", "default": false, "description": "Context wrapper extension for a small, non-actionable group heading." },
+    { "name": "checkbox / checked", "type": "boolean", "default": false, "description": "Context wrapper extensions used by Apply To. A checkmark communicates a persistent on/off choice." },
+    { "name": "danger-cta", "type": "style class", "description": "Resource menu convention for destructive actions. Currently colors the label and icon Red 400." }
+  ],
+  "anatomy": [
+    { "name": "Trigger", "description": "A labelled button, a named kebab button, or the selected canvas object. Retain the resource context until dismissal." },
+    { "name": "Panel", "description": "Floating white surface, 8px padding, 8px corners, and a shadow. Width follows content within the viewport." },
+    { "name": "Action row", "description": "Optional icon, action label, and optional shortcut or submenu caret. The whole row is the target." },
+    { "name": "Group heading and divider", "description": "Separate related actions without behaving like actions themselves." },
+    { "name": "Danger row", "description": "Destructive command in a separate final group. Color reinforces an explicit label." },
+    { "name": "Submenu", "description": "A second panel for child commands or checkbox choices. Keep it reachable without crossing another row." }
+  ],
+  "itemTypes": [
+    { "name": "Action", "description": "Optional 16px leading icon, label, whole row is the target. Ordinary actions close the menu on activation. role=menuitem." },
+    { "name": "Disabled action", "description": "Stays visible at reduced opacity (0.5 standard, 0.25 compact), cursor not-allowed, no hover fill, aria-disabled." },
+    { "name": "Danger action", "description": "Label and icon in red-400. Sits alone in a final group after a divider. Still receives the neutrals-50 hover fill." },
+    { "name": "Submenu parent", "description": "Trailing CaretRight (16px) pushed to the end of the row. Opens its child panel on hover or Right arrow; does not run a command. Shows the neutrals-50 fill while open or highlighted." },
+    { "name": "Checkbox item", "description": "Persistent on/off choice (Apply To). Leading Square icon when unchecked, CheckSquare (fill weight) when checked; checked rows take blue-50 fill and blue-500 label and icon. Stays open after toggling (closeOnClick false). role=menuitemcheckbox with aria-checked." },
+    { "name": "Shortcut hint", "description": "Trailing 12px/16px regular text in neutrals-500, pushed to the end of the row, aria-hidden. Context menus only; use the platform's notation." },
+    { "name": "Divider", "description": "1px neutrals-100 line with 4px vertical margin. Non-interactive. Only between meaningful groups." },
+    { "name": "Subheader", "description": "Compact context-menu group heading, 10px/15px weight 600 in neutrals-400, non-actionable. Defined in the spec data only; no rendered specimen." }
+  ],
+  "dimensions": {
+    "panel": { "padding": 8, "cornerRadius": 8, "border": "none (no stroke defined or rendered)", "widthStandardPreview": 224, "widthCompactPreview": 200, "contextMinWidth": 200, "specimenMaxWidth": "100%", "livePopupMaxWidth": "min(320px, available width)", "livePopupMaxHeight": "available height, then overflow-y auto (scroll inside the panel)", "zIndex": 70 },
+    "itemInset": { "padding": 2, "note": "2px on every side of each row, so row pitch = row min-height + 4." },
+    "standardRow": { "display": "flex, align-items center", "gap": 8, "padding": "4px 8px", "cornerRadius": 6, "minHeight": 28, "pitch": 32 },
+    "compactRow": { "display": "flex, align-items center", "gap": 8, "padding": "2px 4px", "cornerRadius": 4, "minHeight": 20, "pitch": 24 },
+    "icon": { "width": 16, "height": 16, "toggleable": true, "defaultVisible": true, "toggleProperty": "Icons" },
+    "submenuCaret": { "size": 16, "icon": "CaretRight", "position": "margin-left auto (end of row)" },
+    "divider": { "height": 1, "margin": "4px 0" },
+    "label": { "flex": 1, "minWidth": 0, "overflowWrap": "anywhere" },
+    "focusOutline": { "width": 2, "style": "solid", "offset": -2 },
+    "shadow": {
+      "standard": { "css": "2px 2px 24px color-mix(in srgb, #163462 8%, transparent)", "resolved": "2px 2px 24px rgba(22, 52, 98, 0.08)", "ink": "--flowx-menu-shadow-ink (#163462, local to .flx-menu-scope; same ink as the elevation shadowColor)", "note": "Matches the Primary card shadow, not an elevation level." },
+      "compact": { "css": "0 2px 4px -1px color-mix(in srgb, var(--flowx-grays-900) 20%, transparent), 0 4px 5px color-mix(in srgb, var(--flowx-grays-900) 14%, transparent), 0 1px 10px color-mix(in srgb, var(--flowx-grays-900) 12%, transparent)", "resolved": "0 2px 4px -1px rgba(0, 0, 0, 0.20), 0 4px 5px rgba(0, 0, 0, 0.14), 0 1px 10px rgba(0, 0, 0, 0.12)", "note": "Heavier source shadow kept for the compact context menu." }
+    },
+    "previewTrigger": { "note": "Values of the docs playground trigger buttons only; the Button component spec governs real triggers.", "minHeight": 36, "minWidth": 36, "padding": "6px 8px", "gap": 8, "border": "1px solid #cbd1db (--flowx-neutrals-200)", "cornerRadius": 8, "background": "#ffffff (--flowx-grays-50)", "hoverOrOpenBackground": "#f7f8f9 (--flowx-neutrals-50)", "text": "#2a313a (--flowx-neutrals-800), 600 12px/20px", "focusOutline": "2px solid #006bd8 (--flowx-blue-500), offset 3", "kebabIcon": "DotsThreeVertical 20px bold", "dropdownCaret": "CaretDown 16px" }
+  },
+  "typography": {
+    "fontFamily": "Open Sans (var(--font-flowx))",
+    "standardLabel": { "fontSize": 14, "lineHeight": 20, "fontWeight": 600 },
+    "compactLabel": { "fontSize": 12, "lineHeight": 16, "fontWeight": 400 },
+    "shortcut": { "fontSize": 12, "lineHeight": 16, "fontWeight": 400 },
+    "subheader": { "fontSize": 10, "lineHeight": 15, "fontWeight": 600 },
+    "note": "Resource actions add 600 weight through their menu factories; the base dropdown stylesheet only sets 14px. Do not shrink the type to fit more actions."
+  },
+  "colors": {
+    "light": {
+      "panel": { "fill": "#ffffff", "token": "--flowx-grays-50", "border": "none" },
+      "standardRow": {
+        "default": { "fill": "transparent", "text": "#475263", "textToken": "--flowx-neutrals-700", "icon": "#2a313a", "iconToken": "--flowx-neutrals-800", "opacity": 1 },
+        "hover": { "fill": "#f7f8f9", "fillToken": "--flowx-neutrals-50", "text": "#475263", "icon": "#2a313a" },
+        "focus": { "fill": "#f7f8f9", "fillToken": "--flowx-neutrals-50", "outline": "2px solid #006bd8 inset (outline-offset -2)", "outlineToken": "--flowx-blue-500", "text": "#475263", "icon": "#2a313a" },
+        "disabled": { "fill": "transparent", "text": "#475263", "icon": "#2a313a", "opacity": 0.5, "note": "Opacity only; text color is unchanged and no hover fill is applied." },
+        "danger": { "fill": "transparent", "text": "#eb4e33", "textToken": "--flowx-red-400", "icon": "#eb4e33", "hoverFill": "#f7f8f9" },
+        "submenu": { "fill": "#f7f8f9 (while open or highlighted)", "fillToken": "--flowx-neutrals-50", "text": "#475263", "icon": "#2a313a", "caret": "inherits row text color" },
+        "checked": { "fill": "#e6f0fb", "fillToken": "--flowx-blue-50", "text": "#006bd8", "textToken": "--flowx-blue-500", "icon": "#006bd8", "note": "Defined for standard density in the data; only used by compact Apply To rows in the examples." }
+      },
+      "compactRow": {
+        "default": { "fill": "transparent", "text": "#000000", "textToken": "--flowx-grays-900", "icon": "#2a313a", "iconToken": "--flowx-neutrals-800", "opacity": 1 },
+        "hover": { "fill": "#f7f8f9", "fillToken": "--flowx-neutrals-50", "text": "#000000" },
+        "focus": { "fill": "#f7f8f9", "fillToken": "--flowx-neutrals-50", "outline": "2px solid #006bd8 inset (outline-offset -2)", "outlineToken": "--flowx-blue-500", "text": "#000000" },
+        "disabled": { "fill": "transparent", "text": "#000000", "opacity": 0.25, "note": "Source's 25% opacity; no hover fill." },
+        "danger": { "fill": "transparent", "text": "#eb4e33", "textToken": "--flowx-red-400", "icon": "#eb4e33", "note": "Defined in the data; the reviewed canvas Delete command has no danger class, so the context example renders Delete in the default color." },
+        "submenu": { "fill": "#f7f8f9 (while open or highlighted)", "fillToken": "--flowx-neutrals-50", "text": "#000000", "caret": "inherits row text color" },
+        "checked": { "fill": "#e6f0fb", "fillToken": "--flowx-blue-50", "text": "#006bd8", "textToken": "--flowx-blue-500", "icon": "#006bd8 (CheckSquare, fill weight)", "uncheckedIcon": "#2a313a (Square, regular weight)" }
+      },
+      "shortcut": { "text": "#64748b", "token": "--flowx-neutrals-500" },
+      "divider": { "fill": "#e3e8ed", "token": "--flowx-neutrals-100" },
+      "subheader": { "text": "#8390a2", "token": "--flowx-neutrals-400" },
+      "focusRing": { "stroke": "#006bd8", "token": "--flowx-blue-500" }
+    },
+    "dark": {
+      "documented": false,
+      "note": "No shared dark-menu treatment has been verified. The palette variables the menu uses are not overridden in the site's dark theme, so the panel renders the light values above in both themes."
+    }
+  },
+  "tokens": {
+    "panel.fill": "grays/50 (#ffffff)",
+    "standardLabel.text": "neutrals/700 (#475263)",
+    "compactLabel.text": "grays/900 (#000000)",
+    "icon.color": "neutrals/800 (#2a313a)",
+    "row.hoverFill": "neutrals/50 (#f7f8f9)",
+    "divider.fill": "neutrals/100 (#e3e8ed)",
+    "shortcut.text": "neutrals/500 (#64748b)",
+    "subheader.text": "neutrals/400 (#8390a2)",
+    "danger.color": "red/400 (#eb4e33)",
+    "checked.color / focus.outline": "blue/500 (#006bd8)",
+    "checked.fill": "blue/50 (#e6f0fb)",
+    "panel.padding / panel.cornerRadius": "8",
+    "standardRow.cornerRadius": "6",
+    "compactRow.cornerRadius": "4",
+    "shadow.ink": "#163462 (elevation shadowColor)"
+  },
+  "behavior": {
+    "trigger": {
+      "kebab": "Named icon button (aria-label such as \"Actions for Customer onboarding\") beside the resource row; DotsThreeVertical 20px bold.",
+      "dropdown": "Labelled button with trailing CaretDown 16px.",
+      "context": "Right-click, Shift+F10, or the ContextMenu key on the focused canvas object; keyboard opening moves focus to the first menuitem. Pair with a visible \"Actions\" button that opens the same commands below the button.",
+      "note": "Retain the resource context until dismissal. Opening a row menu must not select or navigate the row."
+    },
+    "placement": {
+      "buttonMenus": "Open below the trigger (side bottom), aligned to the trigger's end edge (align end), 4px offset, 8px collision padding. Flip above when there is not enough room.",
+      "contextMenus": "Open at the pointer, 2px offset, 8px collision padding.",
+      "submenus": "Open beside the parent row (side right, align start), 4px offset, 8px collision padding; flip to the other side near a screen edge and stay within the viewport vertically. Keep the pointer path into the child panel clear. Opening a submenu does not run its parent action.",
+      "viewport": "Keep the panel inside the viewport. Wrap long labels when width is constrained (overflow-wrap anywhere), and scroll long lists within the panel (max-height = available height). Live popups cap at min(320px, available width).",
+      "motion": "120ms opacity and transform transition, entering and leaving at opacity 0 and scale 0.98, disabled under prefers-reduced-motion."
+    },
+    "dismissal": [
+      "Keep one root menu open at a time; opening a button menu closes an open context menu and vice versa.",
+      "An ordinary command, an outside click, Escape, or leaving with Tab dismisses the menu.",
+      "Escape from a submenu returns to its parent.",
+      "Checkbox choices in Apply To keep the menu open for repeated changes.",
+      "Close the menu when the page scrolls (wheel) away from its target; if the wheel event is inside the menu itself, keep it open.",
+      "When a shared popup opens for a different resource, update both its actions and its position.",
+      "After dismissal, keep keyboard focus in the triggering context (focus returns to the trigger, or to the canvas target for context menus). If an action opens a dialog, move focus into that dialog and return it appropriately when the dialog closes."
+    ],
+    "keyboard": [
+      "Enter / Space: open a button menu or activate an item.",
+      "Up / Down: move through items in the open menu.",
+      "Home / End: move to the first or last item.",
+      "Right / Left: open a submenu or return to its parent.",
+      "Escape: close the current menu and return focus to its trigger or parent.",
+      "Tab / Shift+Tab: close the menu and move through the page.",
+      "Letters: find an item by its label.",
+      "Shift+F10: open the context menu on the focused canvas object."
+    ],
+    "accessibility": {
+      "role": "menu; menuitem for commands; menuitemcheckbox for persistent toggles",
+      "aria": [
+        "aria-label: name icon-only triggers and the menu's context.",
+        "aria-haspopup / aria-expanded: expose the trigger's menu and open state.",
+        "aria-disabled: identify unavailable items and prevent their activation.",
+        "aria-checked: expose a checkbox item's current value."
+      ],
+      "focusVisible": "2px solid blue-500 outline, offset -2px, on the focused row; decorative icons, shortcuts, and carets are aria-hidden.",
+      "references": ["https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/", "https://www.w3.org/WAI/ARIA/apg/patterns/menubar/", "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"]
+    }
+  },
+  "guidelines": {
+    "do": [
+      "Keep resource actions beside the resource: use a kebab for secondary actions such as Details, Copy UUID, and Delete, and keep the main task visible in the page.",
+      "Name a group of commands with a labelled dropdown; use a submenu when an action needs one more choice, such as Export to CSV or ZIP.",
+      "Act on the current canvas selection with a context menu offering Copy, Paste, and Delete at the pointer, and provide a visible actions button for the same commands so touch and keyboard users can reach them.",
+      "Separate destructive actions: place Delete in a final group after a divider, with a clear label and danger color. When deletion needs confirmation, close the menu and open an alert that names the affected resource.",
+      "Keep unavailable actions visible but disabled, and explain the prerequisite in the surrounding UI.",
+      "Hide actions that do not apply to the current resource or permissions, and remove empty groups and unused dividers with them.",
+      "Show shortcut hints only for shortcuts the application actually supports, in the correct platform notation.",
+      "Use the standard density for resource and page actions; the compact density documents the existing canvas context menu.",
+      "Keep the panel inside the viewport, wrap long labels when width is constrained, and scroll long lists within the panel."
+    ],
+    "dont": [
+      "Don't let opening a row menu select or navigate the row.",
+      "Don't add a divider between every item; only between meaningful groups.",
+      "Don't make a submenu parent also run a command; the parent only opens the group.",
+      "Don't nest beyond one level where it can be avoided.",
+      "Don't shrink the type to fit more actions.",
+      "Don't rely on color alone for a destructive action; the label and icon still need to name the action clearly."
+    ]
+  },
+  "precedence": {
+    "vsDropdownPanel": "Menus and the dropdown-panel component (components/dropdown-panel.json, alias tree) are different things and each governs its own case. If the rows run commands (Details, Copy UUID, Export, Delete) and the panel closes on activation, Menus governs: 8px panel padding and corners, 28px/20px min-height rows with 6px/4px corners, 600-weight 14px standard labels, red-400 danger rows, dividers, and the card-style shadow. If the rows pick a value that persists as a selection (single or multi-select with checkbox or radio indicators, a select-all and search header, grouping of options), dropdown-panel governs: its 244px/200px panel, 32px/24px rows, 4px row corners, and 0 8px 16px shadow. A persistent on/off toggle that lives inside an action menu (Apply To) stays a menuitemcheckbox row styled by Menus; it does not turn the panel into a dropdown-panel. The Designer's form-bound Nested Select is a selection control, not the action-menu reference. Where the two overlap (hover fill neutrals-50, checked or selected fill blue-50 with blue-500 text) the values coincide, so there is no conflict on color; do not mix their dimensions within one panel.",
+    "vsOtherPatterns": "Menu triggers are Button component instances (the playground's trigger values are illustrative). A destructive menu action that needs confirmation closes the menu and hands off to the Alerts pattern; other dialogs opened from a menu follow the Modals pattern. The Select Field component's own option list is not a menu."
+  },
+  "considerations": [
+    "Red 400 on white is below the 4.5:1 reference for small text. Review a darker danger token before treating the current appearance as an accessibility-approved baseline; the label and icon still need to name the action clearly.",
+    "Destructive color is not consistent across the implementations: resource menus apply Red 400, while the reviewed canvas Delete command has no danger class. The context preview preserves that difference; the usage guidance proposes grouping and identifying destructive actions consistently.",
+    "The documentation uses a Blue 500 keyboard outline, 50% disabled opacity for standard rows, and the source's 25% opacity for compact rows. The compact source instead has a custom pale-blue focus shadow, mixed gray colors for active rows, and shortcut text at 50% opacity; the preview uses FlowX neutrals for the active fill and shortcut text.",
+    "The previews retain the current light surfaces, source typography, spacing, and separate shadows per density.",
+    "The 4px button/submenu gap, wrapping in constrained widths, the visible context actions button, and scrollable long panels are documentation guidance. The reviewed resource alignment can be flush, the context submenu uses a 106% offset, and the source wheel handler closes even when scrolling a menu.",
+    "The playground's keyboard navigation, menu checkbox semantics, focus return, named triggers, and collision-aware positioning demonstrate the intended interaction contract; they do not establish keyboard or screen-reader parity in every PrimeNG and PrimeReact implementation.",
+    "The inline actions cell (icon-button group) and the form-bound Nested Select are adjacent patterns, not menu implementations."
+  ],
+  "decisionLog": [
+    { "date": "2026-09-10", "title": "Documented from code, not Figma", "description": "Based on the FlowX DS Gap Audit (September 4, 2026) recommendation #4, reviewed against Designer checkout 01326458d3. Palette mappings are code-derived equivalents; no Figma component link or approved exception has been asserted. Examples reconstruct source-backed actions; resource names and compositions are illustrative." },
+    { "date": "2026-09-10", "title": "Two densities kept", "description": "Standard (dropdown and tiered menu source: 8px panel padding and radius, 2px item inset, 8px by 4px row padding, 6px row radius, 14px labels, blue-ink shadow) for resource and page actions; Compact (canvas context menu source: 200px minimum width, 12px labels, 4px by 2px row padding, 4px row radius, 25% disabled opacity, shortcuts, subheaders, checkbox rows) documents the existing context menu." }
+  ],
+  "relatedComponents": ["button", "select-field", "tree", "checkbox"],
+  "relatedPatterns": ["alerts", "modals", "page-anatomy"],
+  "gaps": [
+    "Dark theme: no dark-menu treatment is defined or verified; the menu's --flowx palette variables are not overridden by the site's dark theme.",
+    "Panel width: no width token. The 224px standard specimen is illustrative, 200px is the context-menu minimum from source, and live popups cap at min(320px, available width); intrinsic width otherwise follows content.",
+    "Subheader: typography (10/15/600) and color (neutrals-400) exist in the spec data, but no specimen renders one and no padding, margin, or casing is defined.",
+    "Submenu caret color: no token is assigned; the CaretRight inherits the row's text color.",
+    "Trigger styling: the trigger is not a spec'd element. The 36px demo button (1px neutrals-200 border, 8px radius, 600 12px/20px text) belongs to the docs playground; real triggers are Button component instances.",
+    "Disabled rows change only opacity (0.5 standard, 0.25 compact); no disabled text color token is defined.",
+    "Danger in compact context menus: the data defines red-400 for the compact Danger state, but the rendered context example shows Delete in the default color because the source canvas Delete has no danger class.",
+    "Danger contrast: red-400 (#eb4e33) on white is below 4.5:1 and a darker token is still under review; no replacement value is documented.",
+    "Checked state for standard density is defined in the data but never rendered; only compact Apply To rows use it.",
+    "No Figma link, Figma node, or Figma variable bindings; all colors are code-derived palette equivalents.",
+    "The spec has no formal considerations, knownExceptions, or decisionLog fields; the considerations and decision log above are drawn from the page's Adoption notes and Source evidence sections.",
+    "No documented maximum item count, scroll threshold, or hard nesting limit (only \"keep nesting to one level where possible\").",
+    "Icon color for compact rows with icons (neutrals-800) comes from the data only; the context examples show no icons.",
+    "Trigger-to-panel and submenu offsets (4px, context 2px) and the 8px collision padding are the documented preview values; the source uses flush alignment for resources and a 106% offset for the context submenu."
+  ]
+}

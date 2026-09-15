@@ -53,7 +53,7 @@ Claude scans your source and returns findings grouped by severity — **Violatio
 SKILL.md           Entry point — rules, build workflow, audit workflow, index
 references/
   foundations/     Design tokens (the raw scales)
-    colors         6 palettes (blue, yellow, green, orange, red, neutrals) + semantic tokens + dark mode
+    colors         6 palettes (blue, yellow, green, orange, red, neutrals) + semantic tokens + dark mode + proposed status-color map
     typography     Font families, sizes, weights, line heights, text presets
     spacing        20-step spacing scale (0–160px)
     elevation      5 shadow levels (xs–xl)
@@ -71,6 +71,10 @@ references/
     tabs           Active/inactive × 2 sizes, with optional icon and counter
     dropdown-panel Multi-select/single × 2 sizes, search + nesting (site name: Tree)
     values-table   Tables: read-only/editing/error/warning, batch edit, bordered variant
+    status-pills   Read-only state label (beta): 5 tones × light/dark surface × 2 sizes, optional icon
+    toast          Brief feedback message (beta): 4 variants, stacking, auto-dismiss timing, motion
+    info-message   Inline informational message next to a field, section, or page
+    warning-message  Inline warning message, same anatomy as info-message
 
   patterns/        Page-level patterns (how to compose a screen)
     page-anatomy   How a whole page is composed: 4 page levels, the title-card + main-card spine, 3 render modes, 4 main-card variants, ground rules
@@ -78,6 +82,7 @@ references/
     empty-states   No-content/no-results/canvas scenarios, 2 sizes, copy guidance
     modals         4 widths, anatomy, button placement, multi-step
     alerts         Destructive-confirmation dialog: red primary action, consequence body, references row
+    menus          Contextual and dropdown menus: panel, item types and states, light + dark
     typography-hierarchy  Text roles and section composition rules
 
   sync-state.json  Records which design-system-site commit these specs reflect
@@ -93,4 +98,4 @@ Each spec is a pair: a `.json` file (authoritative exact values Claude reads) an
 
 ## Staying current
 
-These files are a snapshot of the FlowX design system website, taken at the commit recorded in `references/sync-state.json` (last synced **2026-07-27**). When the design system changes, the specs are re-synced from the site and this repo is updated — `git pull` to get the latest.
+These files are a snapshot of the FlowX design system website, taken at the commit recorded in `references/sync-state.json` (last synced **2026-09-15**). When the design system changes, the specs are re-synced from the site and this repo is updated — `git pull` to get the latest.

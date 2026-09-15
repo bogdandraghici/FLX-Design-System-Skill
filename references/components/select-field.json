@@ -97,11 +97,11 @@
         "description": "#e62200"
       },
       "disabled": {
-        "containerFill": "#e3e8ed",
+        "containerFill": "#f7f8f9",
         "stroke": "#e3e8ed",
         "value": "#5b6a7e",
         "placeholder": "#8390a2",
-        "chipBg": "#cbd1db",
+        "chipBg": "#e3e8ed",
         "chipText": "#475263"
       }
     },
@@ -136,5 +136,8 @@
   },
   "guidance": {
     "fillMode": "Use text mode for single-select fields where the user picks exactly one option, rendering the selected value as plain text. Use chip mode for multi-select so users can see and remove individual selections."
-  }
+  },
+  "decisionLog": [
+    { "date": "2026-09-15", "decision": "Disabled selects use a neutrals-50 fill with a neutrals-100 border, and their chips drop to neutrals-100.", "reasoning": "Disabled controls on a neutrals-100 fill read almost as heavy as enabled ones. Stepping the fill down to neutrals-50 with a neutrals-100 hairline lets active controls lead while the disabled shape stays visible. Text colors are unchanged so legibility is unaffected." }
+  ]
 }

@@ -96,15 +96,15 @@
       },
       "disabled": {
         "unselected": {
-          "containerBg": "#e3e8ed",
-          "border": "rgba(15,17,20,0.1)",
+          "containerBg": "#f7f8f9",
+          "border": "#e3e8ed",
           "checkboxStroke": "rgba(15,17,20,0.1)",
           "value": "#64748b"
         },
         "selected": {
-          "containerBg": "#e3e8ed",
-          "border": "#64748b",
-          "checkboxFill": "#64748b",
+          "containerBg": "#f7f8f9",
+          "border": "#cbd1db",
+          "checkboxFill": "#8390a2",
           "value": "#64748b"
         }
       }
@@ -158,5 +158,8 @@
         }
       }
     }
-  }
+  },
+  "decisionLog": [
+    { "date": "2026-09-15", "decision": "Disabled bordered checkboxes use a neutrals-50 fill with a neutrals-100 border (neutrals-200 when selected), and the selected box drops from neutrals-500 to neutrals-400.", "reasoning": "Disabled controls on a neutrals-100 fill read almost as heavy as enabled ones. Stepping the fill down to neutrals-50 with a neutrals-100 hairline lets active controls lead while the disabled shape stays visible. Text colors are unchanged so legibility is unaffected." }
+  ]
 }

@@ -37,7 +37,7 @@
           "Default": { "fill": "#006bd8", "text": "#ffffff" },
           "Hover": { "fill": "#005fc0", "text": "#ffffff" },
           "Pressed": { "fill": "#004c99", "text": "#ffffff" },
-          "Disabled": { "fill": "#e3e8ed", "text": "#8390a2" }
+          "Disabled": { "fill": "#f7f8f9", "stroke": "#e3e8ed", "text": "#8390a2" }
         },
         "Secondary": {
           "Default": { "fill": "#ffffff", "stroke": "#e3e8ed", "text": "#006bd8", "icon": "#1d232c" },
@@ -57,7 +57,7 @@
           "Default": { "fill": "#e62200", "text": "#ffffff" },
           "Hover": { "fill": "#d11f00", "text": "#ffffff" },
           "Pressed": { "fill": "#a31800", "text": "#ffffff" },
-          "Disabled": { "fill": "#e3e8ed", "text": "#8390a2" }
+          "Disabled": { "fill": "#f7f8f9", "stroke": "#e3e8ed", "text": "#8390a2" }
         },
         "Secondary": {
           "Default": { "fill": "#ffffff", "stroke": "#e3e8ed", "text": "#e62200", "icon": "#1d232c" },
@@ -77,7 +77,7 @@
           "Default": { "fill": "#008060", "text": "#ffffff" },
           "Hover": { "fill": "#007457", "text": "#ffffff" },
           "Pressed": { "fill": "#005b44", "text": "#ffffff" },
-          "Disabled": { "fill": "#e3e8ed", "text": "#8390a2" }
+          "Disabled": { "fill": "#f7f8f9", "stroke": "#e3e8ed", "text": "#8390a2" }
         },
         "Secondary": {
           "Default": { "fill": "#ffffff", "stroke": "#e3e8ed", "text": "#008060", "icon": "#1d232c" },
@@ -155,5 +155,8 @@
         }
       }
     }
-  }
+  },
+  "decisionLog": [
+    { "date": "2026-09-15", "decision": "Disabled Primary buttons on light surfaces use a neutrals-50 fill with a neutrals-100 border instead of a solid neutrals-100 fill.", "reasoning": "Disabled controls on a neutrals-100 fill read almost as heavy as enabled ones. Stepping the fill down to neutrals-50 with a neutrals-100 hairline lets active controls lead while the disabled shape stays visible. Text colors are unchanged so legibility is unaffected." }
+  ]
 }

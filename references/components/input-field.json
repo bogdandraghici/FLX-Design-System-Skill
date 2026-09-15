@@ -81,7 +81,7 @@
         "description": "#e62200"
       },
       "disabled": {
-        "containerFill": "#e3e8ed",
+        "containerFill": "#f7f8f9",
         "stroke": "#e3e8ed",
         "value": "#5b6a7e",
         "placeholder": "#8390a2",
@@ -117,5 +117,8 @@
   },
   "guidance": {
     "requiredFields": "Mark required fields with an asterisk after the label so users can scan a form and see what they must fill in before submitting. Use neutrals-500 for the asterisk so it reads as a quiet annotation rather than an alert."
-  }
+  },
+  "decisionLog": [
+    { "date": "2026-09-15", "decision": "Disabled fields use a neutrals-50 fill with a neutrals-100 border instead of a solid neutrals-100 fill.", "reasoning": "Disabled controls on a neutrals-100 fill read almost as heavy as enabled ones. Stepping the fill down to neutrals-50 with a neutrals-100 hairline lets active controls lead while the disabled shape stays visible. Text colors are unchanged so legibility is unaffected." }
+  ]
 }

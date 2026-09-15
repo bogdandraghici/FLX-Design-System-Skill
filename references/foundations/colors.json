@@ -109,6 +109,28 @@
         "ring": { "alias": "blue-400", "value": "#3389e0" }
       }
     },
-    "cssVariablePattern": "--flowx-{palette}-{shade}"
+    "cssVariablePattern": "--flowx-{palette}-{shade}",
+    "status": {
+      "maturity": "proposal",
+      "description": "Shared semantic map for status pills, status cells, and markers, built from the existing palette. Resolve the meaning within each domain, then reuse the same tone across views. Text and icon share the foreground token; the soft fill identifies the group and a visible label always carries the state. All ten text/background pairs exceed 4.5:1. Usage, sizes, and adoption notes live in components/status-pills.json.",
+      "tones": {
+        "Neutral": { "meaning": "A passive state with no immediate action.", "examples": "Draft, queued, inactive, unknown",
+          "light": { "foreground": "#475263", "foregroundToken": "--flowx-neutrals-700", "background": "#e3e8ed", "backgroundToken": "--flowx-neutrals-100" },
+          "dark": { "foreground": "#cbd1db", "foregroundToken": "--flowx-neutrals-200", "background": "#2a313a", "backgroundToken": "--flowx-neutrals-800" } },
+        "Info": { "meaning": "Work is progressing or a transition is underway.", "examples": "Running, importing, in progress",
+          "light": { "foreground": "#004c99", "foregroundToken": "--flowx-blue-700", "background": "#e6f0fb", "backgroundToken": "--flowx-blue-50" },
+          "dark": { "foreground": "#8abbed", "foregroundToken": "--flowx-blue-200", "background": "#002d5b", "backgroundToken": "--flowx-blue-900" } },
+        "Success": { "meaning": "An operation succeeded or a resource is ready.", "examples": "Completed, passed, active, ready",
+          "light": { "foreground": "#005b44", "foregroundToken": "--flowx-green-700", "background": "#e6f2ef", "backgroundToken": "--flowx-green-50" },
+          "dark": { "foreground": "#8ac5b6", "foregroundToken": "--flowx-green-200", "background": "#003628", "backgroundToken": "--flowx-green-900" } },
+        "Warning": { "meaning": "Attention or a decision is needed to continue.", "examples": "Action required, blocked, deprecated",
+          "light": { "foreground": "#8b3b0f", "foregroundToken": "--flowx-orange-800", "background": "#fff0e8", "backgroundToken": "--flowx-orange-50" },
+          "dark": { "foreground": "#febb97", "foregroundToken": "--flowx-orange-200", "background": "#6a2d0c", "backgroundToken": "--flowx-orange-900" } },
+        "Danger": { "meaning": "An operation failed or access was denied.", "examples": "Failed, error, denied",
+          "light": { "foreground": "#a31800", "foregroundToken": "--flowx-red-700", "background": "#fde9e6", "backgroundToken": "--flowx-red-50" },
+          "dark": { "foreground": "#f4998a", "foregroundToken": "--flowx-red-200", "background": "#610e00", "backgroundToken": "--flowx-red-900" } }
+      },
+      "note": "Status tones use the orange palette for Warning (orange-800 on orange-50), unlike the older semantic warning token which points at yellow-500. For status UI the status map wins; the semantic warning token remains for non-status accents."
+    }
   }
 }

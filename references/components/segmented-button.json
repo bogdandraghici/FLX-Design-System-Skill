@@ -38,7 +38,9 @@
   "colors": {
     "light": {
       "containerFill": "#e3e8ed",
+      "containerFillDisabled": "#f7f8f9",
       "label": "#1d232c",
+      "labelDisabled": "#8390a2",
       "selected": { "fill": "#006bd8", "text": "#ffffff" },
       "unselected": { "fill": "transparent", "text": "#475263" },
       "unselectedHover": { "fill": "rgba(255,255,255,0.6)" },
@@ -46,11 +48,16 @@
     },
     "dark": {
       "containerFill": "rgba(255,255,255,0.1)",
+      "containerFillDisabled": "rgba(255,255,255,0.1)",
       "label": "#ffffff",
+      "labelDisabled": "#64748b",
       "selected": { "fill": "#3389e0", "text": "#ffffff" },
       "unselected": { "fill": "transparent", "text": "#a6b0be" },
       "unselectedHover": { "fill": "rgba(255,255,255,0.12)" },
       "disabledSelected": { "fill": "#64748b", "text": "#ffffff" }
     }
-  }
+  },
+  "decisionLog": [
+    { "date": "2026-09-15", "decision": "The disabled track uses a neutrals-50 fill, and the label follows the shared field label so it dims to neutrals-400 when disabled.", "reasoning": "Disabled controls on a neutrals-100 fill read almost as heavy as enabled ones. Stepping the fill down to neutrals-50 with a neutrals-100 hairline lets active controls lead while the disabled shape stays visible. Text colors are unchanged so legibility is unaffected." }
+  ]
 }

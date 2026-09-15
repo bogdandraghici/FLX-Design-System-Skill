@@ -1,0 +1,141 @@
+{
+  "name": "Toast",
+  "slug": "toast",
+  "aliases": ["toasts"],
+  "status": "beta",
+  "lastUpdated": "2026-09-07",
+  "sitePath": "/components/toast",
+  "legacyPath": "/patterns/toasts redirects to /components/toast",
+  "description": "Brief feedback about an action or event, shown above the page without interrupting the current task.",
+  "source": "Documents the current unthemed Angular Toast used by Designer (libs/ui-toolkit/angular/src/lib/toast). Palette tokens are existing palette equivalents of the toolkit SCSS values, not extracted Figma bindings. No Figma component link has been verified.",
+  "props": [
+    { "name": "messageType", "type": "enum", "options": ["success", "warning", "info", "error"], "required": true, "description": "Sets the fill and default icon. Designer's wrapper exposes success, warning, and error; Info is available through the toolkit service." },
+    { "name": "title", "type": "string", "description": "Short outcome in sentence case. Open Sans 14px / 22px, weight 600. Provide a title, a message, or both." },
+    { "name": "message", "type": "string", "description": "Optional explanation or next step, Open Sans 12px / 18px, weight 400. Wrap the full text; do not truncate." },
+    { "name": "icon", "type": "string", "default": "messageType", "description": "Defaults to the matching semantic icon in a 24px box. The toolkit accepts an icon override; keep its meaning consistent with the message." },
+    { "name": "className / appendTo", "type": "string / ToastConfig", "description": "Toolkit escape hatches for themed runtime content and a custom overlay host. Not additional visual variants." }
+  ],
+  "variants": [
+    { "name": "Success", "useCase": "Confirm a completed action.", "example": { "title": "Stage saved", "message": "Your changes are ready to use." } },
+    { "name": "Warning", "useCase": "Explain a recoverable condition that needs attention.", "example": { "title": "Some changes could not be applied", "message": "Review the affected fields before continuing." } },
+    { "name": "Info", "useCase": "Share a neutral update about an operation.", "example": { "title": "Export started", "message": "You can keep working while the file is prepared." } },
+    { "name": "Error", "useCase": "Explain a failed action and the next step.", "example": { "title": "Failed to load builds", "message": "Try again. If the problem continues, contact your administrator." } }
+  ],
+  "states": [],
+  "statesNote": "No visual state axis. Hover and keyboard focus pause the timer but do not change appearance; the only state styling is the close button focus ring.",
+  "sizes": [],
+  "contentStates": ["Title only", "Title and message", "Message only"],
+  "sizesNote": "Toast has one size. Content determines width and height. There are no Small, Medium, or Large variants.",
+  "anatomy": [
+    { "name": "Container", "description": "Borderless filled surface, horizontal layout, items vertically centered, 8px vertical and 16px horizontal padding, 16px gap, 8px radius, width fits content up to 1200px" },
+    { "name": "TypeIcon", "description": "Semantic icon from the toolkit in a 24x24 box, vertically centered, does not shrink" },
+    { "name": "Title", "description": "Outcome of the action, Open Sans 14/22 SemiBold, visible when a title is provided" },
+    { "name": "Message", "description": "Supporting explanation, Open Sans 12/18 Regular, visible when a message is provided, no extra gap between title and message lines" },
+    { "name": "Close", "description": "Trailing 12x12 cross icon on every toast, 24px minimum target, dismisses only this toast before its timer finishes" },
+    { "name": "Stack", "description": "Always bottom center, 36px from the bottom edge, 8px between items, newest at the bottom with older toasts above" }
+  ],
+  "dimensions": {
+    "container": { "paddingTop": 8, "paddingRight": 16, "paddingBottom": 8, "paddingLeft": 16, "gap": 16, "cornerRadius": 8, "maxWidth": 1200, "width": "fit-content", "border": "none", "alignItems": "center" },
+    "typeIcon": { "width": 24, "height": 24 },
+    "textColumn": { "flex": 1, "minWidth": 0, "overflowWrap": "anywhere" },
+    "close": { "iconWidth": 12, "iconHeight": 12, "minWidth": 24, "minHeight": 24, "padding": 0, "focusRing": { "outline": "2px solid currentColor", "outlineOffset": 3, "borderRadius": 2 } },
+    "stack": { "edgeInset": 36, "gap": 8 }
+  },
+  "typography": {
+    "fontFamily": "Open Sans",
+    "title": { "fontSize": 14, "lineHeight": 22, "fontWeight": 600 },
+    "message": { "fontSize": 12, "lineHeight": 18, "fontWeight": 400 }
+  },
+  "shadow": { "css": "0 10px 24px 0 rgba(15, 17, 20, 0.1)", "token": "--flowx-toast-shadow-color", "value": "rgba(15, 17, 20, 0.1)", "note": "Exact source shadow. It has no match in the elevation scale (xs 0 2px 8px through xl 0 24px 32px, all #1634621a)." },
+  "action": "none",
+  "colors": {
+    "light": {
+      "Success": { "fill": "#008060", "fillToken": "--flowx-green-500", "border": "none", "icon": "#ffffff", "title": "#ffffff", "body": "#ffffff", "close": "#ffffff", "textToken": "--flowx-grays-50" },
+      "Warning": { "fill": "#fd6b1c", "fillToken": "--flowx-orange-500", "border": "none", "icon": "#ffffff", "title": "#ffffff", "body": "#ffffff", "close": "#ffffff", "textToken": "--flowx-grays-50" },
+      "Info": { "fill": "#3389e0", "fillToken": "--flowx-blue-400", "border": "none", "icon": "#ffffff", "title": "#ffffff", "body": "#ffffff", "close": "#ffffff", "textToken": "--flowx-grays-50" },
+      "Error": { "fill": "#e62200", "fillToken": "--flowx-red-500", "border": "none", "icon": "#ffffff", "title": "#ffffff", "body": "#ffffff", "close": "#ffffff", "textToken": "--flowx-grays-50" }
+    },
+    "dark": {
+      "note": "No dark override exists. The .dark theme does not redefine the palette tokens the toast uses, so it renders the same values on dark surfaces. A shared dark Toast treatment still needs separate review.",
+      "Success": { "fill": "#008060", "fillToken": "--flowx-green-500", "border": "none", "icon": "#ffffff", "title": "#ffffff", "body": "#ffffff", "close": "#ffffff", "textToken": "--flowx-grays-50" },
+      "Warning": { "fill": "#fd6b1c", "fillToken": "--flowx-orange-500", "border": "none", "icon": "#ffffff", "title": "#ffffff", "body": "#ffffff", "close": "#ffffff", "textToken": "--flowx-grays-50" },
+      "Info": { "fill": "#3389e0", "fillToken": "--flowx-blue-400", "border": "none", "icon": "#ffffff", "title": "#ffffff", "body": "#ffffff", "close": "#ffffff", "textToken": "--flowx-grays-50" },
+      "Error": { "fill": "#e62200", "fillToken": "--flowx-red-500", "border": "none", "icon": "#ffffff", "title": "#ffffff", "body": "#ffffff", "close": "#ffffff", "textToken": "--flowx-grays-50" }
+    },
+    "whiteTextContrast": { "Success": "4.93:1", "Warning": "2.88:1", "Info": "3.62:1", "Error": "4.57:1", "target": "4.5:1", "note": "Warning and Info fall below the 4.5:1 reference target. Source colors are documented, not certified as accessible." }
+  },
+  "behavior": {
+    "placement": "Always bottom center, 36px from the bottom edge. Keep the close button reachable above fixed navigation or an on-screen keyboard.",
+    "stacking": "8px between toasts, newest at the bottom, older toasts stacked above. The documentation demo caps the stack at three; that limit applies only to the demo.",
+    "autoDismiss": { "msPerCharacter": 50, "countedText": "title length plus message length", "minimumMs": 2000, "errorMinimumMs": 3000, "maximumMs": 10000, "formula": "min(10000, max(type === Error ? 3000 : 2000, (title.length + message.length) * 50))", "examples": { "20 characters": { "successWarningInfo": "2s", "error": "3s" }, "80 characters": { "successWarningInfo": "4s", "error": "4s" }, "240 characters": { "successWarningInfo": "10s", "error": "10s" } } },
+    "pause": "Hover pauses the timer and resumes the remaining time on leave; the remaining time is preserved rather than restarted. The documentation also pauses for keyboard focus inside the toast. Angular pauses only on hover.",
+    "dismissal": "Close button on every toast removes only its toast before the timer finishes. Clicking the toast body does not dismiss it.",
+    "actions": "Toast actions are not supported. Follow-up controls belong in the page.",
+    "entryAnimation": { "duration": "320ms", "easing": "cubic-bezier(0.22, 1, 0.36, 1)", "from": "opacity 0, translateY(16px) scale(0.98)", "to": "opacity 1, translateY(0) scale(1)" },
+    "exitAnimation": { "duration": "260ms", "easing": "cubic-bezier(0.4, 0, 1, 1)", "from": "opacity 1, translateY(0) scale(1)", "to": "opacity 0, translateY(10px) scale(0.98)", "removalDelayMs": 260, "pointerEvents": "none while exiting" },
+    "reducedMotion": "prefers-reduced-motion: reduce disables both animations and removes the toast immediately (0ms delay).",
+    "sourceAnimation": "The Angular source uses a 300ms height entry and a 200ms height/opacity exit; the documentation preview replaces these with the transform/opacity animations above.",
+    "focus": "Focus stays on the triggering control when a toast appears. After dismissing a focused toast, focus returns to a meaningful control."
+  },
+  "guidelines": {
+    "useCases": [
+      { "type": "Success", "title": "Confirm the outcome", "description": "Confirm a completed action when the result is not obvious in the current view. Name what changed. \"Stage saved\" is an existing FlowX message." },
+      { "type": "Warning", "title": "Explain what needs attention", "description": "Use a warning for a recoverable condition. Give the user enough context to act, and keep required corrections visible in the page." },
+      { "type": "Info", "title": "Share a neutral update", "description": "Explain an event without implying success or failure. For ongoing work, keep progress in the page and use the toast only as a brief update." },
+      { "type": "Error", "title": "Explain the failure and next step", "description": "Name the failed operation and a useful next step. Avoid exposing raw server errors. \"Failed to load builds\" is an existing FlowX message." }
+    ],
+    "do": [
+      "Provide a title, a message, or both, in sentence case.",
+      "Let long text wrap and grow vertically; width follows content up to 1200px and the available viewport width.",
+      "Keep essential instructions and recovery controls available in the page after the toast disappears.",
+      "Use an inline message when information needs to remain visible.",
+      "Keep any icon override consistent in meaning with the message."
+    ],
+    "dont": [
+      "Don't truncate the title or message.",
+      "Don't put actions inside a toast; follow-up controls belong in the page.",
+      "Don't expose raw server errors in an Error toast.",
+      "Don't replace the solid Warning (Orange 500) and Info (Blue 400) fills silently; they differ from the soft status-pill palette."
+    ]
+  },
+  "accessibility": {
+    "role": "Guidance: status for routine feedback; alert for important, time-sensitive failures. Announce updates without moving focus.",
+    "keyboard": [
+      "Tab / Shift+Tab reach the close button. Pause dismissal while focus is inside the toast.",
+      "Enter / Space activate the focused close button.",
+      "Leave focus on the triggering control when a toast appears. After dismissing a focused toast, return focus to a meaningful control."
+    ],
+    "aria": [
+      "aria-atomic=\"true\" announces the complete title and supporting message together.",
+      "aria-label gives the close control an accessible name such as \"Dismiss notification\".",
+      "aria-hidden=\"true\" hides the decorative type and close icons from assistive technology.",
+      "The documentation preview wraps each live toast in role=\"group\" with aria-label \"{Type} notification\", announces non-error toasts through a role=\"status\" region and errors through a role=\"alert\" region.",
+      "A 2 to 10 second timer alone does not establish accessibility; keep essential information and recovery controls in the page.",
+      "Angular lacks explicit live-region roles and focus pause. React announces every type as an alert."
+    ]
+  },
+  "decisionLog": [
+    { "date": "2026-09-07", "decision": "Always use bottom-center placement, automatic timing, and a close button; omit toast actions.", "reasoning": "Current design guidance limits Toast to brief feedback in a consistent location. Duration follows content length, the close button is always available, and any follow-up controls belong in the page." }
+  ],
+  "adoptionNotes": [
+    "Observed gaps, not approved exceptions.",
+    "React uses a 3-second minimum for Warning and Info, compared with Angular's 2 seconds. Its Toast does not pause on hover or focus, always schedules a timeout, marks every toast as an alert, and has no equivalent queue service.",
+    "Angular groups by the raw position value: mixing an omitted position with an explicit bottom-center value can omit messages from an existing stack. Normalize the default consistently when integrating.",
+    "Themed runtime overrides and a shared dark Toast treatment still need separate review."
+  ],
+  "relatedComponents": ["button", "input-field", "status-pills"],
+  "relatedPatterns": ["alerts", "modals"],
+  "gaps": [
+    "No dark theme treatment is defined; colors.dark repeats the light values because no source overrides them.",
+    "No Figma component or figmaLink has been verified; all values come from the Angular toolkit code and the site's rendered preview.",
+    "The container shadow (0 10px 24px 0 rgba(15, 17, 20, 0.1)) has no match in the elevation scale and is not a shared token.",
+    "White text on the Warning (2.88:1) and Info (3.62:1) fills is below the 4.5:1 target; colors are documented, not approved.",
+    "Toast has no action slot, so no Button variant is reused; button.json does not apply.",
+    "No hover or pressed styling is defined for the close button; only a focus-visible outline exists.",
+    "The rendered Info icon uses a 16x16 viewBox scaled into the 24px box; Success, Warning, and Error use 24x24 viewBoxes.",
+    "The spec exposes messageType values in lowercase (success, warning, info, error) while variant names and the rendered data-toast-type attribute are capitalized (Success, Warning, Info, Error).",
+    "Entry and exit animations (320ms / 260ms transform and opacity) are documentation-preview values; the Angular source animates height over 300ms in and 200ms out.",
+    "No maximum number of stacked toasts is defined in the source; the three-toast cap is demo-only.",
+    "No minimum width, minimum height, or fixed height is defined; height and width follow content."
+  ]
+}

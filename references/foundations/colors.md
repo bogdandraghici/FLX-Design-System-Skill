@@ -135,3 +135,15 @@ CSS variable pattern: `--flowx-{palette}-{shade}`
 | muted-foreground   | neutrals-400   | #8390a2   |
 | border             | neutrals-700   | #475263   |
 | ring               | blue-400       | #3389e0   |
+
+## Status Colors (Proposal)
+
+A shared semantic map for status pills, status cells, and markers, built from the existing palette. Resolve the meaning within each domain, then reuse the same tone across views. Text and icon share the foreground token; the soft fill identifies the group and a visible label always carries the state. All ten text/background pairs exceed 4.5:1 contrast. Usage, sizes, and adoption notes are in `components/status-pills`. Note that Warning here uses the orange palette (orange-800 on orange-50), unlike the older semantic `warning` token which points at yellow-500; for status UI the status map wins.
+
+| Tone    | Meaning                                              | Light text / icon        | Light fill              | Dark text / icon         | Dark fill                |
+|---------|------------------------------------------------------|--------------------------|-------------------------|--------------------------|--------------------------|
+| Neutral | A passive state with no immediate action             | neutrals-700 `#475263`   | neutrals-100 `#e3e8ed`  | neutrals-200 `#cbd1db`   | neutrals-800 `#2a313a`   |
+| Info    | Work is progressing or a transition is underway      | blue-700 `#004c99`       | blue-50 `#e6f0fb`       | blue-200 `#8abbed`       | blue-900 `#002d5b`       |
+| Success | An operation succeeded or a resource is ready        | green-700 `#005b44`      | green-50 `#e6f2ef`      | green-200 `#8ac5b6`      | green-900 `#003628`      |
+| Warning | Attention or a decision is needed to continue        | orange-800 `#8b3b0f`     | orange-50 `#fff0e8`     | orange-200 `#febb97`     | orange-900 `#6a2d0c`     |
+| Danger  | An operation failed or access was denied             | red-700 `#a31800`        | red-50 `#fde9e6`        | red-200 `#f4998a`        | red-900 `#610e00`        |

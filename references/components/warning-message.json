@@ -1,0 +1,131 @@
+{
+  "name": "Warning message",
+  "slug": "warning-message",
+  "family": "inline-message",
+  "sibling": "info-message",
+  "status": "beta",
+  "lastUpdated": "2026-09-08",
+  "description": "Persistent context about consequences or risks before someone continues.",
+  "sourceBasis": "Source-based recreation of the page-authored warning banner in the Designer app's content-import confirmation modal (modules/projects/components/runtime-content/import/kb-import-confirmation-modal.component.html:14), reviewed against Designer checkout 753c84252b on 2026-09-08. Not a Figma extraction; there is no figmaLink.",
+  "props": [
+    { "name": "Warning message", "type": "page markup", "description": "A fixed banner in Review Content Import, displayed when breakingCount is nonzero. It has no component props, size enum, title slot, or dismissal input." },
+    { "name": "content", "type": "projected content", "description": "In the site's rendered recreation the body is projected content; the reference banner has fixed text." },
+    { "name": "width", "type": "enum", "options": ["fill", "fit"], "default": "fill", "description": "Exposed by the shared rendered component (width 100% or fit-content, max-width 100%, min-width 0). The Warning message page only shows fill; width follows the caller's panel." }
+  ],
+  "documentationPreviewControls": [
+    { "name": "preview width", "options": ["Wide", "Narrow"], "default": "Wide", "note": "Narrow caps the documentation canvas at 320px. It changes only the canvas, not the component." }
+  ],
+  "variations": {
+    "content": [
+      { "name": "Plain", "description": "Body text only. Reference copy: \"These keys are referenced by build query criteria and will be removed. Affected builds will fail until resolved.\"" },
+      { "name": "Emphasis", "description": "Same body with the key consequence in bold: \"Affected builds will **fail** until resolved.\" Bold emphasis is a documentation recommendation, not in the source template." },
+      { "name": "Wrapping", "description": "The reference body inside a 260px-wide column; text wraps to multiple lines with the icon staying at the top." }
+    ],
+    "width": [
+      { "name": "Full panel", "description": "Fills the available panel or column. Example copy: \"Settings are not configured, some functionality may be missing.\"" },
+      { "name": "Half-width column", "description": "The same message in a half-width column; the message follows the column width." }
+    ],
+    "title": "None. There is no title slot. The Breaking Changes heading belongs to the surrounding section, outside the message.",
+    "action": "None inside the message. The Import Anyway confirmation action belongs to the surrounding modal.",
+    "dismiss": "None. The baseline has no timer or close control.",
+    "observedAppVariations": [
+      { "name": "Breaking changes reference", "difference": "Orange 50 fill, 1px Orange 100 border, 8px radius, 12px padding and 8px gap. Neutral 600 text at 12px / 16px, regular. Top-aligned 16px Orange 500 warning icon. The Breaking Changes heading is outside the banner.", "source": "modules/projects/components/runtime-content/import/kb-import-confirmation-modal.component.html:14" },
+      { "name": "Settings and operation warnings", "difference": "Same orange fill, border and icon, but 8px padding, centered alignment and Neutral 500 text. Used in MS Graph, database, MCP, file storage and test-operation screens. Width follows the caller's panel.", "source": "modules/integration-designer/components/operation-details-page/test-operation-modal/test-operation-modal.component.html:154" },
+      { "name": "Email settings corners", "difference": "Uses 12px corners instead of 8px, with the 8px-padded settings treatment and half-width placement.", "source": "modules/integration-designer/components/system-details-page/email-type-system-details/email-type-system-details.component.html:34" },
+      { "name": "Dataset and capture warnings", "difference": "The dataset dialog uses 8px padding; its capture menu counterpart uses 4px. Both use 12px / 16px Neutral 500 text, centered alignment, an 8px radius and Orange 100 border.", "source": "modules/integration-designer/workflow-integration/components/evals/capture/capture-test-case-menu.component.html:19" },
+      { "name": "API-key reset warning", "difference": "12px padding with 14px / 20px Neutral 700 text and a warning icon offset down 2px. The template sets a border color but no border width, so it does not have the import banner's visible 1px border. Reset API Key is outside the callout.", "source": "modules/projects/components/manage-triggers/webhook-url-modal/webhook-url-modal.component.html:47" },
+      { "name": "Migration warning", "difference": "Uses a stronger Orange 500 border, 8px padding, centered icon alignment and 12px text. This is a local difference, not an approved higher-severity variant.", "source": "modules/projects/components/corrective-actions/migration-summary-modal/migration-summary-modal.component.html:101" },
+      { "name": "React provider warning", "difference": "Uses a 0.5px Orange 100 border, 14px horizontal / 8px vertical padding, a 10px gap, and 12px Neutral 900 text. The icon is centered.", "source": "modules/integration-designer/workflow-integration/react/components/nodes/ai-node/AINodeModelTab.tsx:396" }
+    ],
+    "note": "Observed app variations are caller differences in Designer, not a supported variant API. Only the documented baseline is the design-system reference."
+  },
+  "states": [],
+  "statesNote": "Static message with no interactive states.",
+  "sizes": [],
+  "sizesNote": "No size axis. The site shows a single style reference; placement width is not a size variant.",
+  "anatomy": [
+    { "name": "Container", "description": "Pale orange surface with 12px padding, 8px corners, and a subtle 1px border. Horizontal flex row, children aligned to the top (flex-start), 8px gap." },
+    { "name": "IconSlot", "description": "Fixed 16x16 alignment slot; flex, centered both ways, does not shrink." },
+    { "name": "Icon", "description": "Outlined orange warning triangle (Phosphor Warning, regular weight), 16x16, aligned to the start of the content, aria-hidden." },
+    { "name": "Body", "description": "Consequence or risk at 12px / 16px. Wraps without truncation (overflow-wrap anywhere, min-width 0). The baseline keeps headings and confirmation actions outside. Other app compositions include grouped messages or inline navigation." }
+  ],
+  "dimensions": {
+    "container": { "paddingTop": 12, "paddingRight": 12, "paddingBottom": 12, "paddingLeft": 12, "gap": 8, "cornerRadius": 8, "borderWidth": 1, "direction": "horizontal", "alignItems": "flex-start", "widthFill": "100%", "widthFit": "fit-content", "maxWidth": "100%", "minWidth": 0 },
+    "iconSlot": { "width": 16, "height": 16 },
+    "icon": { "width": 16, "height": 16 }
+  },
+  "typography": {
+    "fontFamily": "Open Sans",
+    "body": { "fontSize": 12, "lineHeight": 16, "fontWeight": 400 },
+    "emphasis": { "element": "strong" }
+  },
+  "colors": {
+    "light": {
+      "container": { "fill": "#fff0e8", "fillToken": "--flowx-orange-50", "border": "#fed1b9", "borderToken": "--flowx-orange-100", "borderWidth": 1 },
+      "icon": { "color": "#fd6b1c", "colorToken": "--flowx-orange-500" },
+      "title": null,
+      "body": { "text": "#5b6a7e", "textToken": "--flowx-neutrals-600" },
+      "action": null
+    },
+    "dark": {
+      "sameAsLight": true,
+      "container": { "fill": "#fff0e8", "fillToken": "--flowx-orange-50", "border": "#fed1b9", "borderToken": "--flowx-orange-100", "borderWidth": 1 },
+      "icon": { "color": "#fd6b1c", "colorToken": "--flowx-orange-500" },
+      "title": null,
+      "body": { "text": "#5b6a7e", "textToken": "--flowx-neutrals-600" },
+      "action": null
+    },
+    "documentationSurface": { "fill": "#f7f8f9", "fillToken": "--flowx-neutrals-50", "note": "The site previews the Warning message on a neutrals-50 surface." }
+  },
+  "placement": {
+    "relativeTo": "Above the content affected by the consequence, before the person continues; keep it visible while that consequence applies. State the consequence before asking people to continue.",
+    "width": "Follow the containing column: fill the available panel or column. Placement width is not a size variant.",
+    "outsideTheMessage": "Section headings (Breaking Changes) and confirmation actions (Import Anyway) belong to the surrounding modal or section, not inside the message.",
+    "notForFieldHelp": "Keep field-specific instructions and validation with their control. Use a callout for context affecting a section or task."
+  },
+  "guidelines": {
+    "useCase": [
+      { "title": "Explain the consequence", "description": "Say what will happen and what will be affected before people continue.", "example": "Plain" }
+    ],
+    "do": [
+      { "title": "Emphasize the key risk", "description": "Bold only the essential consequence. Keep the rest easy to scan.", "example": "Emphasis" },
+      { "title": "Let longer messages wrap", "description": "Keep the baseline icon at the top and show the full message without truncation.", "example": "Wrapping" },
+      { "title": "Follow the containing column", "description": "Fill the available panel or column. Placement width is not a size variant.", "example": "Width" }
+    ],
+    "dont": [],
+    "sharedBase": {
+      "note": "Defined on the shared inline-message base spec. The Warning message page itself renders only the items above.",
+      "do": [
+        { "title": "Keep context beside the affected content", "description": "Place an Info tip beside the settings it explains and a warning above the content affected by the consequence." },
+        { "title": "Keep essential information visible", "description": "Leave the message available while its condition applies. A brief toast cannot replace persistent guidance." }
+      ],
+      "dont": [
+        { "title": "Do not infer one universal style", "description": "The shared Info tip and the page-authored warning have different spacing and typography. Similar-looking call sites also contain local variations." },
+        { "title": "Do not promote field help into a banner", "description": "Keep field-specific instructions and validation with their control. Use a callout for context affecting a section or task." }
+      ]
+    }
+  },
+  "considerations": [
+    "The reference is page-authored markup in the import modal. It has no shared variant or size API.",
+    "The Breaking Changes heading and Import Anyway action belong to the surrounding modal, outside the message.",
+    "State the consequence before asking people to continue. Keep the warning visible while that consequence applies.",
+    "The baseline has no timer or close control."
+  ],
+  "accessibility": {
+    "role": "Static context needs no live role. Announce dynamic feedback according to urgency.",
+    "keyboard": ["Tab: keep interactive links and controls in the normal reading order.", "Focus: do not move focus merely because a result appears."],
+    "aria": ["aria-hidden: decorative icons are hidden; the text carries the meaning.", "aria-describedby: associate a message with an affected control when appropriate.", "aria-live: the source template declares no live region. If an important result changes dynamically, its caller must provide appropriate announcement behavior."]
+  },
+  "decisionLog": [],
+  "knownExceptions": [],
+  "relatedComponents": ["info-message", "toast", "input-field", "button"],
+  "gaps": [
+    "No dark-mode treatment is defined. The rendered component uses the same palette tokens in both themes and globals.css does not redefine --flowx palette variables under .dark, so colors.dark simply repeats colors.light.",
+    "No title element exists (no title slot), so title typography and color are undefined.",
+    "No link or action color is defined for the Warning message; the reference banner contains no inline action and the spec defines no Action element (unlike the Info message's blue-500 action).",
+    "The bold emphasis is a plain <strong> element; no numeric font weight is specified for it in the sources, and bold emphasis is a documentation recommendation rather than part of the source template.",
+    "No hover, focus, or pressed behavior is defined because the message has no interactive parts.",
+    "No Figma source exists for this component; values come from the Designer app source and the site's rendered recreation.",
+    "The spec and the rendered component agree on every value; the warning has no decision log entries."
+  ]
+}
